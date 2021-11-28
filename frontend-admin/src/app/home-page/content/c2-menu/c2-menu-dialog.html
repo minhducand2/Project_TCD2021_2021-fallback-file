@@ -1,0 +1,141 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>Manager Menu</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+        <!-- IdParentMenu field -->
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>MENU CHA<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdParentMenu" [(ngModel)]="input.IdParentMenu">
+              <mat-option *ngFor="let menu of menuDatas" [value]="menu.id">
+                {{menu.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdParentMenu'].invalid      
+              && (form.controls['IdParentMenu'].dirty || form.controls['IdParentMenu'].touched)">
+            <div *ngIf="form.controls['IdParentMenu'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IsGroup field -->
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>GROUP<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IsGroup" [(ngModel)]="input.IsGroup">
+              <mat-option [value]="0">
+                NOT GROUP
+              </mat-option>
+              <mat-option [value]="1">
+                IS GROUP
+              </mat-option>
+              <mat-option [value]="2">
+                HIDDEN
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IsGroup'].invalid      
+              && (form.controls['IsGroup'].dirty || form.controls['IsGroup'].touched)">
+            <div *ngIf="form.controls['IsGroup'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- Name field -->
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>MENU TITLE<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Name" formControlName="Name">
+            <button mat-button *ngIf="input.Name" matSuffix mat-icon-button aria-label="Clear" (click)="input.Name=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Name'].invalid      
+              && (form.controls['Name'].dirty || form.controls['Name'].touched)">
+            <div *ngIf="form.controls['Name'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- Slug field -->
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>URL SLUG<span class="text-red"></span></mat-label>
+            <input matInput [(ngModel)]="input.Slug" formControlName="Slug">
+            <button mat-button *ngIf="input.Slug" matSuffix mat-icon-button aria-label="Clear" (click)="input.Slug=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Slug'].invalid      
+              && (form.controls['Slug'].dirty || form.controls['Slug'].touched)">
+            <div *ngIf="form.controls['Slug'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon field -->
+        <div class="col-md-4">
+          <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">DANH SÁCH ICON</a>
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>fab fa-python<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Icon" formControlName="Icon">
+            <button mat-button *ngIf="input.Icon" matSuffix mat-icon-button aria-label="Clear" (click)="input.Icon=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Icon'].invalid      
+              && (form.controls['Icon'].dirty || form.controls['Icon'].touched)">
+            <div *ngIf="form.controls['Icon'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- Position field -->
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>VỊ TRÍ<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Position" formControlName="Position">
+            <button mat-button *ngIf="input.Position" matSuffix mat-icon-button aria-label="Clear"
+              (click)="input.Position=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Position'].invalid      
+              && (form.controls['Position'].dirty || form.controls['Position'].touched)">
+            <div *ngIf="form.controls['Position'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </mat-card-content>
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()"
+      class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card>

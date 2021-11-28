@@ -1,0 +1,28 @@
+$color-main: #22924c;
+header {
+    background: $color-main;
+    .logo {
+        img {
+            height: 30px;
+            object-fit: contain;
+        }
+    }
+    .nav-custom {
+        min-height: 54px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color: #fff;
+        padding: 15px 10px;
+    }
+
+    .navbar-light .navbar-nav .active > .nav-link {
+        color: #fff;
+        padding: 15px 10px;
+    }
+    .navbar-light .navbar-nav .active {
+        background: #007e33;
+    }
+}
+

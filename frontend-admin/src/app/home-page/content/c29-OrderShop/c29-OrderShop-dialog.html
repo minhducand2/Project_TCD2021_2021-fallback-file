@@ -1,0 +1,301 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>ORDER SHOP</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12 col-12">
+      <div class="row custom-overflow">
+        <div class="col-md-12 col-12">
+          <div class="alert alert-danger" *ngIf="isErrWareHouse">
+        <div  i18n>
+          Số lượng trong kho <span><b>{{getDisplayCityById(input.IdCity)}}</b></span> không đủ. Vui lòng kiểm tra lại kho
+        </div>
+      </div>
+        </div>
+        <!-- IdProductType field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Product Type<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdProductType" [(ngModel)]="input.IdProductType">
+              <mat-option *ngFor="let ProductType of ProductTypeDatas" [value]="ProductType.id">
+                {{ProductType.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdProductType'].invalid      
+              && (form.controls['IdProductType'].dirty || form.controls['IdProductType'].touched)">
+            <div *ngIf="form.controls['IdProductType'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IdUser field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>User<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdUser" [(ngModel)]="input.IdUser">
+              <mat-option *ngFor="let User of UserDatas" [value]="User.id">
+                {{User.Fullname}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdUser'].invalid      
+              && (form.controls['IdUser'].dirty || form.controls['IdUser'].touched)">
+            <div *ngIf="form.controls['IdUser'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IdOrderStatus field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Order Status<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdOrderStatus" [(ngModel)]="input.IdOrderStatus">
+              <mat-option *ngFor="let OrderStatus of OrderStatusDatas" [value]="OrderStatus.id">
+                {{OrderStatus.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdOrderStatus'].invalid      
+              && (form.controls['IdOrderStatus'].dirty || form.controls['IdOrderStatus'].touched)">
+            <div *ngIf="form.controls['IdOrderStatus'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IdCity field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>IdCity<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdCity" [(ngModel)]="input.IdCity">
+              <mat-option *ngFor="let City of CityDatas" [value]="City.id">
+                {{City.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdCity'].invalid      
+              && (form.controls['IdCity'].dirty || form.controls['IdCity'].touched)">
+            <div *ngIf="form.controls['IdCity'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IdDistrict field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>IdDistrict<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdDistrict" [(ngModel)]="input.IdDistrict">
+              <mat-option *ngFor="let District of DistrictDatas" [value]="District.id">
+                {{District.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdDistrict'].invalid      
+              && (form.controls['IdDistrict'].dirty || form.controls['IdDistrict'].touched)">
+            <div *ngIf="form.controls['IdDistrict'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IdPaymentStatus field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Payment Status<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdPaymentStatus" [(ngModel)]="input.IdPaymentStatus">
+              <mat-option *ngFor="let PaymentStatus of PaymentStatusDatas" [value]="PaymentStatus.id">
+                {{PaymentStatus.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdPaymentStatus'].invalid      
+              && (form.controls['IdPaymentStatus'].dirty || form.controls['IdPaymentStatus'].touched)">
+            <div *ngIf="form.controls['IdPaymentStatus'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- IdPaymentType field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Payment Type<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdPaymentType" [(ngModel)]="input.IdPaymentType">
+              <mat-option *ngFor="let PaymentType of PaymentTypeDatas" [value]="PaymentType.id">
+                {{PaymentType.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdPaymentType'].invalid      
+              && (form.controls['IdPaymentType'].dirty || form.controls['IdPaymentType'].touched)">
+            <div *ngIf="form.controls['IdPaymentType'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- TotalPrice field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Total Price <span class="text-red">*</span></mat-label>
+            <input matInput type="number" [(ngModel)]="input.TotalPrice" formControlName="TotalPrice">
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['TotalPrice'].invalid      
+              && (form.controls['TotalPrice'].dirty || form.controls['TotalPrice'].touched)">
+            <div *ngIf="form.controls['TotalPrice'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <!-- PromotionCode field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Promotion Code <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.PromotionCode" formControlName="PromotionCode">
+            <button mat-button *ngIf="input.PromotionCode" matSuffix mat-icon-button aria-label="Clear"
+              (click)="input.PromotionCode=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['PromotionCode'].invalid      
+              && (form.controls['PromotionCode'].dirty || form.controls['PromotionCode'].touched)">
+          </div>
+        </div>
+
+        <!-- Name field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Name <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Name" formControlName="Name">
+            <button mat-button *ngIf="input.Name" matSuffix mat-icon-button aria-label="Clear" (click)="input.Name=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Name'].invalid      
+              && (form.controls['Name'].dirty || form.controls['Name'].touched)">
+          </div>
+        </div>
+
+        <!-- Email field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Email <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Email" formControlName="Email">
+            <button mat-button *ngIf="input.Email" matSuffix mat-icon-button aria-label="Clear"
+              (click)="input.Email=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Email'].invalid      
+              && (form.controls['Email'].dirty || form.controls['Email'].touched)">
+          </div>
+        </div>
+
+        <!-- Phone field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Phone <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Phone" formControlName="Phone">
+            <button mat-button *ngIf="input.Phone" matSuffix mat-icon-button aria-label="Clear"
+              (click)="input.Phone=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Phone'].invalid      
+              && (form.controls['Phone'].dirty || form.controls['Phone'].touched)">
+          </div>
+        </div>
+
+        <!-- Address field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Address <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Address" formControlName="Address">
+            <button mat-button *ngIf="input.Address" matSuffix mat-icon-button aria-label="Clear"
+              (click)="input.Address=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Address'].invalid      
+              && (form.controls['Address'].dirty || form.controls['Address'].touched)">
+          </div>
+        </div>
+
+        <!-- Note field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Note <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Note" formControlName="Note">
+            <button mat-button *ngIf="input.Note" matSuffix mat-icon-button aria-label="Clear" (click)="input.Note=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Note'].invalid      
+              && (form.controls['Note'].dirty || form.controls['Note'].touched)">
+          </div>
+        </div>
+
+        <!-- CreatedAt field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width"  >
+            <mat-label i18n>Created At<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.CreatedAt" formControlName="CreatedAt" [matDatepicker]="pickerCreatedAt">
+            <mat-datepicker-toggle matSuffix [for]="pickerCreatedAt"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerCreatedAt></mat-datepicker>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['CreatedAt'].invalid      
+              && (form.controls['CreatedAt'].dirty || form.controls['CreatedAt'].touched)">
+          </div>
+        </div>
+
+        <!-- UpdatedAt field -->
+        <div class="col-md-4 col-12">
+          <mat-form-field class="example-full-width"  >
+            <mat-label i18n>Updated At<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.UpdatedAt" formControlName="UpdatedAt" [matDatepicker]="pickerUpdatedAt">
+            <mat-datepicker-toggle matSuffix [for]="pickerUpdatedAt"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerUpdatedAt></mat-datepicker>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['UpdatedAt'].invalid      
+              && (form.controls['UpdatedAt'].dirty || form.controls['UpdatedAt'].touched)">
+          </div>
+        </div>
+
+
+
+      </div>
+    </form>
+  </mat-card-content>
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()"
+      class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card>

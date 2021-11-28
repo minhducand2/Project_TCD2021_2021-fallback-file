@@ -1,0 +1,135 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>INFOMATION INPUTPRODUCT</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+        <!-- IdShop field -->
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Shop<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="IdShop" [(ngModel)]="input.IdShop">
+              <mat-option *ngFor="let Shop of ShopDatas" [value]="Shop.id">
+                {{Shop.Title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['IdShop'].invalid      
+              && (form.controls['IdShop'].dirty || form.controls['IdShop'].touched)">
+            <div *ngIf="form.controls['IdShop'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>City<span class="text-red">*</span></mat-label>
+            <mat-select formControlName="City" [(ngModel)]="input.IdCity">
+              <mat-option *ngFor="let item of CityDatas" [value]="item.id">
+                {{item.Name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['City'].invalid      
+              && (form.controls['City'].dirty || form.controls['City'].touched)">
+            <div *ngIf="form.controls['City'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Amount <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Amount" formControlName="Amount">
+            <button mat-button *ngIf="input.Amount" matSuffix mat-icon-button aria-label="Clear" (click)="input.Amount=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Amount'].invalid      
+              && (form.controls['Amount'].dirty || form.controls['Amount'].touched)">
+            <div *ngIf="form.controls['Amount'].errors.required" i18n>
+              Please enter this field.
+            </div>
+            <div *ngIf="form.controls['Amount'].errors.pattern" i18n>
+              Bạn chỉ được nhập số
+            </div>
+    
+          </div>
+        </div>
+
+        <!-- Note field -->
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Note <span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.Note" formControlName="Note">
+            <button mat-button *ngIf="input.Note" matSuffix mat-icon-button aria-label="Clear" (click)="input.Note=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Note'].invalid      
+              && (form.controls['Note'].dirty || form.controls['Note'].touched)">
+            <div *ngIf="form.controls['Note'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div> 
+
+        <!-- CreatedAt field -->
+        <!-- <div class="col-md-12">
+          <mat-form-field class="example-full-width"  >
+            <mat-label i18n>Expiry Date<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.ExpiryDate" formControlName="ExpiryDate" [matDatepicker]="pickerExpiryDate">
+            <mat-datepicker-toggle matSuffix [for]="pickerExpiryDate"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerExpiryDate></mat-datepicker>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['ExpiryDate'].invalid      
+                  && (form.controls['ExpiryDate'].dirty || form.controls['ExpiryDate'].touched)">
+            <div *ngIf="form.controls['ExpiryDate'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- CreatedAt field -->
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width"  >
+            <mat-label i18n>Created At<span class="text-red">*</span></mat-label>
+            <input matInput [(ngModel)]="input.CreatedAt" formControlName="CreatedAt" [matDatepicker]="pickerCreatedAt">
+            <mat-datepicker-toggle matSuffix [for]="pickerCreatedAt"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerCreatedAt></mat-datepicker>
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['CreatedAt'].invalid      
+              && (form.controls['CreatedAt'].dirty || form.controls['CreatedAt'].touched)">
+            <div *ngIf="form.controls['CreatedAt'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </form>
+  </mat-card-content>
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()"
+      class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card>

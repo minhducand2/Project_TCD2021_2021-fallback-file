@@ -1,0 +1,114 @@
+<!--start container-->
+<div class="container">
+    <div class="container__header row">
+        <div class="col-12 col-md-12">
+            <div class="container__header-navigater">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item navigate-menu"><a style="text-transform: uppercase; cursor: pointer;"
+                            (click)="onClickMenu('0','All')">Shop</a></li> 
+                    <li class="breadcrumb-item active">Cart</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <div class="container__table">
+                <table class="table">
+                    <thead>
+                        <tr class="table__tr">
+                            <th>ẢNH SẢN PHẨM</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th>GIÁ SẢN PHẨM</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>THÀNH TIỀN</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataOderMenu" class="table__tr-body">
+                            <td class="img">
+                                <img [src]="getDisplayShopmenuThumbnailById(item?.IdShop)" width="80px" height="85px"
+                                    alt="hinh-san-pham">
+
+                            </td>
+                            <td class="name-pro">
+                                <h5>{{getDisplayShopmenuById(item?.IdShop)}}
+                                </h5> 
+                            </td>
+                            <td class="price-pro">
+                                <h6>
+                                    {{item?.PriceShopMenu | currency: "VND":true}}
+                                </h6>
+
+                            </td>
+                            <td class="d-flex justify-content-center border-0 amount__add ">
+                            
+                                <div class="number-input md-number-input">
+                                    <button (click)="onStepDown(item?.idOderDetail,item?.Amount)" class="minus"></button>
+                                    <input [(ngModel)]="item.Amount" class="quantity" min="0" name="quantity" value="1"
+                                        type="number">
+                                    <button (click)="onStepUp(item?.idOderDetail)" class="plus"></button>
+                                </div>
+                            </td>
+                            <td class="price-pro">
+
+                                <h6>
+                                    {{getPriceProduct(item.PriceShopMenu, item.Amount)| currency: "VND":true}}
+                                </h6>
+
+                            </td>
+                            <td class="delete">
+                                <button type="button" class="btn-del" data-toggle="modal" data-target="#exampleModal"><i
+                                        class="far fa-trash-alt" aria-hidden="true"
+                                        (click)="onBtnGetIdDelClick(item?.idOderDetail)"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="container__pay">
+                <div class="container__pay-total">
+                    <h6>Thông tin đơn hàng </h6>
+                    <p>Tạm tính({{dataOderMenu.length}} sản phẩm) <span>{{priceShopMenu | currency: "VND":true}}</span>
+                    </p>
+                    <p>Phí giao hàng <span> {{costShip | currency: "VND":true}} </span></p>
+                    <h5 (click)="getTotalPrice()">Tổng cộng
+                        <span>{{totalPrice | currency: "VND":true}}</span>
+                    </h5>
+                    <button [disabled]="isDisabled" (click)="onSummitClick()" *ngIf="!isSummit" type="button"
+                        class="btn btn-primary container__button">THANH
+                        TOÁN</button>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!--end container-->
+</div>
+
+<!-- Accuracy delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="color:red" i18n>XÁC THỰC XÓA SẢN PHẨM</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" i18n>
+                Bạn có thực sự muốn xóa sản phẩm này này? Quá trình này không thể được hoàn tác.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" i18n>Hủy</button>
+                <button type="button" class="btn btn-danger" (click)="onBtnDelClick()" data-dismiss="modal" i18n>Đồng
+                    ý</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,338 @@
+<div class="container container-shop">
+    <div class="container__header-navigater">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item navigate-menu"><a style="text-transform: uppercase; cursor: pointer;"
+                    (click)="onClickMenu('0','All')">Shop</a></li>
+            <li class="breadcrumb-item navigate-menu "><a style="text-transform: uppercase;cursor: pointer;"
+                    (click)="onClickMenu(Categories?.id,Categories?.Name)">{{Categories?.Name}}</a></li>
+            <li class="breadcrumb-item active">{{shopMenuDetail?.Title}}</li>
+        </ul>
+    </div>
+    <div class="card">
+        <div class="row">
+            <div class="preview col-md-6">
+
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img [defaultImage]="defaultImage"
+                            [lazyLoad]="shopMenuDetail?.Thumbnail" /></div>
+                    <div class="tab-pane" id="pic-2"><img [defaultImage]="defaultImage"
+                            [lazyLoad]="shopMenuDetail?.Thumbnail" /></div>
+                    <div class="tab-pane" id="pic-image"><img [defaultImage]="defaultImage"
+                            [lazyLoad]="shopMenuDetail?.Images" /></div>
+
+                </div>
+                <ul class="preview-thumbnail nav nav-tabs">
+                    <li class="active">
+                        <a data-target="#pic-2" data-toggle="tab"><img [defaultImage]="defaultImage"
+                                [lazyLoad]="shopMenuDetail?.Thumbnail" /></a>
+                    </li>
+                    <li>
+                        <a data-target="#pic-image" data-toggle="tab"><img [defaultImage]="defaultImage"
+                                [lazyLoad]="shopMenuDetail?.Images" /></a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="details col-md-6">
+                <h3 class="product-title">{{shopMenuDetail?.Title}}</h3>
+                <h6 class="masp">Loại: {{Categories?.Name}} | Mã SP: {{shopMenuDetail?.id}}</h6>
+                <div class="price-products">
+                    <div *ngIf="shopMenuDetail?.PriceOrigin != '0'" class="price-old">
+                        {{shopMenuDetail?.PriceOrigin| currency:'VND': true}}
+                    </div>
+                    <div class="price-sale">
+                        {{shopMenuDetail?.PriceCurrent | currency:'VND': true}}
+                    </div>
+                </div>
+                <div class="amount">
+                    <div class="amount__main">
+                        Số lượng
+                    </div>
+                    <div class="amount__add">
+                        <div class="number-input md-number-input">
+                            <button (click)="onStepDown()" class="minus"></button>
+                            <input [(ngModel)]="amount" class="quantity" min="0" name="quantity" value="1"
+                                type="number">
+                            <button (click)="onStepUp()" class="plus"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="action"> <button [disabled]="isDisabled" (click)="onBtnClickAddCart()"
+                        class="add-to-cart btn btn-default" type="button">Thêm vào giỏ</button>
+                    <button [disabled]="isDisabled" (click)="OnBntClickBuy()" class="like btn btn-default"
+                        type="button">Mua Ngay </button>
+
+                </div>
+                <div class='social-share'>  
+
+                    <share-button button="facebook" [url]="urlSEO" [title]="shopMenuDetail.Title"
+                        [description]="titleShare" [image]="shopMenuDetail.Thumbnail">
+                    </share-button>
+                    <share-button button="twitter" [url]="urlSEO" [title]="shopMenuDetail.Title"
+                        [description]="titleShare" [image]="shopMenuDetail.Thumbnail"></share-button>
+                    <share-button button="copy" [url]="urlSEO"></share-button>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container__tab">
+        <div class="row">
+            <div class="col-md-8 col-lg-9 description-left">
+                <div class="tab">
+                    <div class="tab-include">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs tab-product">
+                            <li class="nav-item">
+                                <a class="nav-link decription active" data-toggle="tab" href="#home">Mô tả sản phẩm</a>
+                            </li>
+                            <li class="nav-item left">
+                                <a class="nav-link image" data-toggle="tab" href="#menu1">Hình ảnh</a>
+                            </li>
+                            <li class="nav-item left">
+                                <a class="nav-link image" data-toggle="tab" href="#menu2">Video</a>
+                            </li>
+
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tab-desc-pro">
+                            <div id="home" class="tab-pane active" [innerHtml]="shopMenuDetail?.Description"><br>
+                            </div>
+                            <div id="menu1" class="container tab-pane fade">
+                                <img [defaultImage]="defaultImage" [lazyLoad]="shopMenuDetail?.Images" alt="img">
+                            </div>
+                            <div id="menu2" class="container tab-pane fade"><br>
+                                <p [innerHtml]="shopMenuDetail?.Video"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-4 col-lg-3 description-right">
+                <div class="product__under">
+                    <div class="buy__together">
+                        <div class="alphabet">
+                            <img src="../../../../assets/images/leaf.png" />
+                            <h4>SẢN PHẨM LIÊN QUAN</h4>
+                        </div>
+                    </div>
+                    <!--SẢN PHẨM LIÊN QUAN-->
+                    <div class="buy__together-products">
+                        <div class="product-buy" *ngFor="let itemShopMenuRelative of listShopMenuRelative">
+                            <div class="product-buy-eachone"
+                                (click)="onMenuClick(itemShopMenuRelative?.id, itemShopMenuRelative?.Title)">
+                                <div class="img-product">
+                                    <img [defaultImage]="defaultImage" [lazyLoad]="itemShopMenuRelative?.Thumbnail"
+                                        width="85px" />
+                                </div>
+                                <div class="info-products">
+                                    <h6 [title]="itemShopMenuRelative?.Title">
+                                        {{itemShopMenuRelative?.titleShort}}
+                                    </h6>
+                                    <div class="price-products-together">
+                                        <div *ngIf="itemShopMenuRelative?.PriceOrigin != '0'" class="price-old">
+                                            {{itemShopMenuRelative?.PriceOrigin | currency:'VND':
+                                            true}}</div>
+                                        <div class="price-new">{{itemShopMenuRelative?.PriceCurrent | currency:'VND':
+                                            true }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end product tdmc-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bình luận -->
+    <div class="container mb-5 mt-5">
+        <div class="card card-custom">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center mb-5"> BÌNH LUẬN KHÁCH HÀNG </h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="bg-light">
+                                <div class="d-flex flex-row align-items-start">
+                                    <input readOnly [formControl]="nameControl" [(ngModel)]="nameComment" type="text"
+                                        class="form-control ml-1 mb-2" id="exampleFormControlInput1"
+                                        placeholder="Nhập họ và tên">
+                                </div>
+
+                                <div class="d-flex flex-row align-items-start">
+                                    <textarea [formControl]="contentControl" [(ngModel)]="userComment.Content"
+                                        class="form-control ml-1 shadow-none textarea" rows="3"
+                                        placeholder="Nhập nội dung bình luận"></textarea>
+
+                                </div>
+                                <div class="mt-2 text-right">
+                                    <button (click)="onBtnSummitComment()" [disabled]="isBtnComment"
+                                        class="btn btn-sm shadow-none"
+                                        style="background-color:var(--main-color); color:#fff" type="button">Đăng
+                                        bài</button>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-12 pb-2">
+                            <mat-error class="alert alert-danger" *ngIf="nameControl.invalid && nameControl.touched">Bạn
+                                phải nhập tên
+                            </mat-error>
+                            <mat-error class="alert alert-danger"
+                                *ngIf="contentControl.invalid && contentControl.touched">Bạn phải nhập nội dung bình
+                                luận
+                            </mat-error>
+                        </div>
+                        <div class="col-md-12 mt-2" *ngFor="let item of listDataComment">
+                            <div class="media">
+                                <img *ngIf="item?.IdStaff != 0" class="mr-3 rounded-circle img-comment"
+                                    alt="Bootstrap Media Preview" [defaultImage]="defaultImage"
+                                    [lazyLoad]="item?.AvatarStaff" />
+                                <img *ngIf="item?.IdStaff == 0" class="mr-3 rounded-circle img-comment"
+                                    alt="Bootstrap Media Preview" [defaultImage]="defaultImage"
+                                    [lazyLoad]="item?.AvatarUser" />
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-12 d-flex col-text">
+                                            <h5 *ngIf="item?.IdUser != 0">{{item?.NameStaff}} </h5>
+                                            <h5 *ngIf="item?.IdStaff == 0">{{item?.Fullname}} </h5>
+                                            <span>
+                                                -{{item?.CreatedAt | date: ' HH:mm dd/MM/yyyy'}}</span>
+                                            <span *ngIf="item?.IdStaff !='0'" style="color:#108EE9"><i
+                                                    class="fas fa-check-circle"></i></span>
+                                            <div *ngIf="user!=null" class="pull-right reply ml-2">
+                                                <a style="color:#108EE9; cursor: pointer;"
+                                                    (click)="openModelReply(item)" data-toggle="modal"
+                                                    data-target="#modal-reply">
+                                                    <span><i class="fa fa-reply"></i> reply</span>
+                                                </a>
+                                            </div>
+                                            <div *ngIf="user==null" (click)="onBtnLoginSocialClick()"
+                                                class="pull-right reply ml-2">
+                                                <a style="color:#108EE9; cursor: pointer;"
+                                                    (click)="onBtnReplyComment(item)">
+                                                    <span><i class="fas fa-sign-in-alt"></i> Đăng nhập</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-text" [innerHtml]="item?.Content"></div>
+                                    <div class="media media-img mt-4" *ngFor="let child of item.childs">
+                                        <a class="pr-3" href="#">
+                                            <img *ngIf="child?.IdStaff == 0" class="mr-3 rounded-circle img-comment"
+                                                alt="Bootstrap Media Preview" [defaultImage]="defaultImage"
+                                                [lazyLoad]="child?.AvatarUser" />
+                                            <img *ngIf="child?.IdStaff != 0" class="mr-3 rounded-circle img-comment"
+                                                alt="Bootstrap Media Preview" [defaultImage]="defaultImage"
+                                                [lazyLoad]="child?.AvatarStaff" />
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="row">
+                                                <div class="col-12 d-flex col-text">
+                                                    <h5 *ngIf="child?.IdStaff != 0">{{child?.NameStaff}}
+                                                    </h5>
+                                                    <h5 *ngIf="child?.IdStaff == 0">{{child?.Fullname}}
+                                                    </h5>
+                                                    <span>
+                                                        -{{child?.CreatedAt | date: ' HH:mm dd/MM/yyyy'}}</span>
+                                                    <span *ngIf="child?.IdStaff !='0'" style="color:#108EE9"><i
+                                                            class="fas fa-check-circle"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-text" [innerHtml]="child?.Content"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <button *ngIf="listDataComment" (click)="getLoadChangePage()" type="button"
+                        class="btn btn-mobile btn-sm mt-2"
+                        style="background-color:var(--main-color); color:#fff; width: 100%; font-weight: bold;">
+                        TẢI THÊM BÌNH LUẬN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isShopMenuSeen" class="container__product-view">
+
+        <h3 class="h3-view"><img src="../../../../assets/images/leaf.png" /> SẢN PHẨM ĐÃ XEM</h3>
+        <div class="row">
+            <div class="col-md-3" *ngFor="let itemShopMenuSeen of listShopMenuSeen">
+                <div class="card" (click)="onMenuClick(itemShopMenuSeen?.id, itemShopMenuSeen?.Title)">
+                    <img [defaultImage]="defaultImage" [lazyLoad]="itemShopMenuSeen?.Thumbnail" class="card-img-top"
+                        alt="Thumb image">
+                    <div class="card-body">
+                        <p class="card-text" [title]="itemShopMenuSeen?.Title">
+                            {{itemShopMenuSeen?.titleShort}}
+                        </p>
+                        <div class="buy-now">
+                            <div class="price">{{itemShopMenuSeen?.PriceCurrent | currency:'VND': true }}</div>
+                            <div> <a href="#" class=" bought-now">Mua ngay</a></div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal replycomment -->
+<div class="modal fade" style="min-height: 600px" id="modal-reply" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-width" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Trả lời bình luận</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="bg-light">
+                    <div class="d-flex flex-row align-items-start">
+                        <input readonly [formControl]="nameControl1" [(ngModel)]="nameComment" type="text"
+                            class="form-control ml-1 mb-2" id="exampleFormControlInput1" placeholder="Nhập họ và tên">
+                    </div>
+
+                    <div class="d-flex flex-row align-items-start">
+                        <textarea [formControl]="contentControl1" [(ngModel)]="userComment.Content"
+                            class="form-control ml-1 shadow-none textarea" rows="3"
+                            placeholder="Nhập nội dung bình luận"></textarea>
+
+                    </div>
+                </div>
+                <mat-error class="alert alert-danger" *ngIf="nameControl1.invalid && nameControl1.touched">
+                    Bạn phải nhập tên
+                </mat-error>
+                <mat-error class="alert alert-danger" *ngIf="contentControl1.invalid && contentControl1.touched">
+                    Bạn phải nhập nội dung bình luận
+                </mat-error>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm shadow-none" (click)="onBtnReplyComment()"
+                    style="background-color:#ff443b; color:#fff" type="button" data-dismiss="modal">Đăng bài</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,208 @@
+<mat-card class="title-block">
+  <div class="row">
+    <div class="col-md-12 title-main">
+      <p i18n>Manager ShopComment</p>
+    </div>
+  </div>
+</mat-card>
+
+<!-- select-top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <div class="col-md-9 col-xs-12">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Fill keywords you are looking for.."
+          i18n-placeholder>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <div class="example-button-row contain-button-filter">
+        <button type="button" class="border-0 btn btn-success btn-filter w-120" i18n><i class="fa fa-filter"></i>Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- filter -top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <!-- select Shop filter -->                     
+    <div class="col-md-3 col-xs-12">                                   
+      <mat-form-field  >                               
+        <mat-label i18n>SEARCH Shop</mat-label>        
+        <mat-select [(ngModel)]="IdShopModel" (selectionChange)="onShopSelectionChange($event)">  
+          <mat-option *ngFor="let item of ShopDatas" [value]="item.id"> 
+            {{item.Title}}                                              
+          </mat-option>                                                
+        </mat-select>                                                  
+      </mat-form-field>                                                
+    </div>                                                             
+
+    <!-- select User filter -->                     
+    <div class="col-md-3 col-xs-12">                                   
+      <mat-form-field  >                               
+        <mat-label i18n>SEARCH User</mat-label>        
+        <mat-select [(ngModel)]="IdUserModel" (selectionChange)="onUserSelectionChange($event)">  
+          <mat-option *ngFor="let item of UserDatas" [value]="item.id"> 
+            {{item.Fullname}}                                              
+          </mat-option>                                                
+        </mat-select>                                                  
+      </mat-form-field>                                                
+    </div>                                                             
+
+    <!-- select Comment Status filter -->                     
+    <div class="col-md-3 col-xs-12">                                   
+      <mat-form-field  >                               
+        <mat-label i18n>SEARCH Comment Status</mat-label>        
+        <mat-select [(ngModel)]="IdCommentStatusModel" (selectionChange)="onCommentStatusSelectionChange($event)">  
+          <mat-option *ngFor="let item of CommentStatusDatas" [value]="item.id"> 
+            {{item.Name}}                                              
+          </mat-option>                                                
+        </mat-select>                                                  
+      </mat-form-field>                                                
+    </div>                                                             
+
+
+  
+  </div>
+  <div class="row">
+  </div>
+</mat-card>
+<!--  end filter-top -->  
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+  <div class="row">
+    <div class="col-md-12" *ngIf="isPermissionMenu1">
+      <button type="button" class="btn btn-success mr-3 btn-add w-120" (click)="onBtnInsertDataClick()" i18n><i
+          class="fa fa-plus"></i> Add new </button>
+      <button type="button" class="btn btn-success mr-3 btn-add-mobile w-120" (click)="onBtnInsertDataClick()" i18n><i
+          class="fa fa-plus"></i> Add </button>
+      <!-- <button type="button" class="btn btn-primary d-inline-block mr-3 btn-accept w-120" i18n><i
+          class="fa fa-check"></i>
+        Duyệt</button> -->
+      <button type="button" class="btn btn-danger btn-del w-120" data-toggle="modal" data-target="#exampleModal" i18n><i 
+          class="mdi mdi-delete"></i>Delete</button>                                                                        
+
+    </div>
+  </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 wp-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 grid-data-custom">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="check-custom">
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- id Column -->                                                    
+    <ng-container matColumnDef="id">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> ID </th> 
+      <td mat-cell *matCellDef="let row"> 
+        <span *ngIf="row.IdTypeComment == 0" style="font-weight: 600;">{{row.id}}</span>
+        <span *ngIf="row.IdTypeComment != 0" style="margin-left:10px">{{row.stt}}</span>
+
+         </td>                
+    </ng-container>                                                         
+
+    <!-- IdShop Column -->                                                    
+    <ng-container matColumnDef="IdShop">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Shop </th> 
+      <td mat-cell *matCellDef="let row"> 
+        <span *ngIf="row.IdTypeComment == 0" style="font-weight: 600;"> {{getDisplayShopById(row.IdShop)}}</span>
+        <span *ngIf="row.IdTypeComment != 0" style="margin-left:10px"> {{getDisplayShopById(row.IdShop)}}</span>
+        </td>
+    </ng-container>                                                         
+
+    <!-- IdUser Column -->                                                    
+    <ng-container matColumnDef="IdUser">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> User </th> 
+      <td mat-cell *matCellDef="let row">
+        <span *ngIf="row.IdStaff == 0" style="font-weight: 600;"> {{getDisplayUserById(row.IdUser)}}</span>
+        <span *ngIf="row.IdStaff != 0" style="font-weight: 600;"> {{getDisplayStaffById(row.IdStaff)}} <i style="color:#00B74A" class="fas fa-check-circle"></i></span>
+         </td>
+    </ng-container>                                                         
+
+    <!-- IdCommentStatus Column -->                                                    
+    <ng-container matColumnDef="IdCommentStatus">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Comment Status </th> 
+      <td mat-cell *matCellDef="let row"> {{getDisplayCommentstatusById(row.IdCommentStatus)}} </td>
+    </ng-container>                                                         
+
+    <!-- Content Column -->                                                    
+    <ng-container matColumnDef="Content">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Content </th> 
+      <td mat-cell *matCellDef="let row"> {{row.Content}} </td>                
+    </ng-container>                                                         
+
+    <!-- CreatedAt Column -->                                                    
+    <ng-container matColumnDef="CreatedAt">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Created At </th> 
+      <td mat-cell *matCellDef="let row"> {{row.CreatedAt | date:"HH:mm dd-MM-yyyy"}} </td>                
+    </ng-container> 
+
+    <!-- reply -->
+    <ng-container matColumnDef="reply">
+      <th mat-header-cell *matHeaderCellDef i18n style="text-transform:uppercase">REPLY</th>
+      <td mat-cell *matCellDef="let row">
+        <i style="cursor: pointer; color:#138496" *ngIf="isPermissionMenu1 && row.IdTypeComment == 0" (click)="onBtnReplyClick(row)"
+          class="fas fa-reply-all" title="Trả lời"></i>
+         
+      </td>
+    </ng-container>
+
+
+
+    <!-- update -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef i18n style="text-transform:uppercase">Edit</th>
+      <td mat-cell *matCellDef="let row">
+        <i style="cursor: pointer;" *ngIf="isPermissionMenu1" (click)="onBtnUpdateDataClick(row)"
+          class="icon-note icon-update" title="Edit"></i>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+</div>
+<!-- pagination -->
+<mat-paginator [pageIndex]="pageIndex" [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+
+
+<!-- Accuracy delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span style="color:red" i18n>Confirm dialog</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" i18n>
+        Do you really want to delete these records? This process cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" i18n>Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="onBtnDelClick()" data-dismiss="modal" i18n>Accept</button>
+      </div>
+    </div>
+  </div>
+</div>

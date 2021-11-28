@@ -1,0 +1,45 @@
+@media screen and (max-width: 420px) {
+  .card-chart {
+    overflow-x: scroll;
+  }
+}
+
+.text-box-right {
+  float: right;
+  margin-top: 20px;
+  font-weight: 500;
+  span {
+    font-weight: 600;
+  }
+}
+.example-full-width {
+  width: 100%;
+}
+.chart-canvas {
+  height: 100% !important;
+  width: 100% !important;
+  @media screen and (max-width: 570px) {
+    width: 300px !important;
+  }
+}
+.margin-box {
+  margin-left: 10px;
+  @media screen and (max-width: 570px) {
+    margin-left: 3rem !important;
+  }
+}
+.icon-size {
+  font-size: 2.5rem;
+  @media screen and (max-width: 570px) {
+    font-size: 3rem !important;
+  }
+}
+.card-title {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+img {
+  width: 100px !important;
+  height: 80px !important;
+  object-fit: cover;
+}

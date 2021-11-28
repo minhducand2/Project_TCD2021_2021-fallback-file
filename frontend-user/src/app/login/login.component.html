@@ -1,0 +1,572 @@
+<!-- ---------------------------------------- NEW------------------------------ -->
+<div class="app">
+    <!--header start-->
+    <header class="header">
+        <!--start info first-->
+        <div class="header-top align-items-center display-desktop">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-header-top-left">
+                        <ul class="ul-top-first">
+                            <li>
+                                <a [href]="headerInfo?.phoneHref"><i class="fas fa-phone-square-alt"></i>
+                                    {{headerInfo?.Phone}}</a>
+                            </li>
+                            <li>
+                                <a [href]="headerInfo?.mailHref"> <i class="fas fa-envelope"></i>
+                                    {{headerInfo?.Mail}}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- <div class="col-md-2 col-header-top">
+                        <ul class="ul-top-first">
+                            <li *ngIf="infoUser==null" (click)="onBtnLoginSocialClick()"><a>
+                                    <i style="color:#ff443b" class="fas fa-sign-in-alt mr-1"></i>LOGIN</a></li>
+                            <li class="icon-card" *ngIf="infoUser!=null">
+                                <a routerLink="/g1-cart/gio-hang" style="cursor: pointer;"> GIỎ HÀNG
+                                    <span><i style="color:#ff443b" class="fas fa-cart-plus"></i></span>
+                                    <span *ngIf="amount>0" class='badge badge-danger' id='lblCartCount'> {{amount}}
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+
+        </div>
+
+
+        <b [ngClass]="isShowMenuMobile ? 'screen-overlay display-mobile show' : 'screen-overlay display-mobile'"></b>
+
+        <nav id="navbar_main"
+            [ngClass]="isShowMenuMobile ? 'mobile-offcanvas navbar navbar-expand-lg navbar-dark display-mobile show' : 'mobile-offcanvas navbar navbar-expand-lg navbar-dark display-mobile'">
+            <div class="offcanvas-header">
+
+                <button (click)="isShowMenuMobile=!isShowMenuMobile" class="btn btn-danger btn-close float-right">
+                    &times; </button>
+
+                <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/logo-admin1.png" class="logo"
+                        alt="logo" class="img-header-main mr-md-5"></a>
+
+            </div>
+            <ul class="navbar-nav nav-mobile">
+
+                <li class="nav-item dropdown">
+
+                    <a (click)="isClassShow=!isClassShow" class="nav-link menu-icon" i18n>
+                        Shop </a>
+                    <ul [ngClass]="isClassShow ? 'dropdown-menu show dropdown-menu-mobile' : 'dropdown-menu'">
+                        <li class="li-dropdown" *ngFor="let item of shopMenuMobile">
+                            <a data-toggle="dropdown" class="nav-link dropdown-toggle" i18n>{{item?.Name}}</a>
+                            <ul class="dropdown-menu">
+                                <li class="li-dropdown" *ngFor="let itemChild of item.child">
+                                    <a (click)="isShowMenuMobile=!isShowMenuMobile"
+                                        (click)="onMenuClick(itemChild?.id,itemChild?.Title)" class="dropdown-item"
+                                        i18n>{{itemChild?.Title}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+
+                    <a (click)="isClass1Show=!isClass1Show" class="nav-link menu-icon"> Công
+                        thức</a>
+                    <ul [ngClass]="isClass1Show ? 'dropdown-menu show dropdown-menu-mobile' : 'dropdown-menu'">
+                        <li class="li-dropdown" *ngFor="let cateRecipe of listCateRecipe">
+                            <a (click)="isShowMenuMobile=!isShowMenuMobile" class="dropdown-item"
+                                (click)="navigatePage(cateRecipe)" i18n>{{cateRecipe?.Name}}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item li-hover" routerLinkActive="active">
+                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-link" routerLink="/e1-blog/blog"
+                        i18n>Blog</a>
+                </li>
+                <li class="nav-item li-hover" routerLinkActive="active">
+                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-link"
+                        routerLink="/f1-community/cong-dong" i18n>Cộng đồng</a>
+                </li>
+                <li class="nav-item li-hover" routerLinkActive="active">
+                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-link" routerLink="/j1-about/gioi-thieu"
+                        i18n>Giới thiệu</a>
+                </li>
+                <li class="nav-item li-hover" routerLinkActive="active">
+                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-link" routerLink="/i1-contact/lien-he"
+                        i18n>Liên hệ</a>
+                </li>
+                <!-- <li class="nav-item dropdown" *ngIf="infoUser!=null">
+                    <img width="42" height="42px" style="object-fit: cover;" [src]="infoUser?.Avatar" alt="avatar"
+                        class="rounded-circle">
+                    <a class="nav-link  dropdown-toggle" data-toggle="dropdown-staff" aria-expanded="false">
+                        {{infoUser?.Fullname}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="li-dropdown">
+
+                            <a class="dropdown-item" routerLink="/manager/admin/a1-dashboard/theo-doi-ban-than"
+                                i18n>Thông tin tài khoản</a>
+                        </li>
+                        <li class="li-dropdown">
+                            <a class="dropdown-item" i18n (click)="logOut()">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item li-hover" *ngIf="infoUser==null" (click)="onBtnLoginSocialClick()"><a>
+                        <i class="fas fa-sign-in-alt mr-1"></i>LOGIN</a>
+                </li> -->
+                <!-- <div class="mt-2">
+                    <img src="https://icons.iconarchive.com/icons/wikipedia/flags/512/VN-Vietnam-Flag-icon.png"
+                        style="margin-right: 3px;" width="30px" height="30px" />
+                    <img src="https://img.icons8.com/color/452/usa.png" width="30px" height="30px" />
+                </div> -->
+            </ul>
+        </nav>
+
+        <!-- ///// -->
+        <div class="header-main">
+            <div class="row display-mobile">
+                <div class="col-2">
+                    <a routerLink="/login/theo-doi-ban-than" *ngIf="infoUser==null" class="a-menu-mobile">
+                        <i class="fas fa-cart-plus"></i>
+                        <span *ngIf="amount>0" class='badge badge-danger' id='lblCartCount'> {{amount}}
+                        </span>
+                    </a>
+                    <a routerLink="/g1-cart/gio-hang" class="a-menu-mobile" *ngIf="infoUser">
+                        <i class="fas fa-cart-plus"></i>
+                        <span *ngIf="amount>0" class='badge badge-danger' id='lblCartCount'> {{amount}}
+                        </span>
+                    </a>
+                </div>
+                <div class="col-8 align-items-center text-center">
+                    <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/logo.png" class="logo"
+                            alt="logo" class="img-header-main mr-md-5"></a>
+                </div>
+                <div class="col-2">
+                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="a-menu-mobile">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="container display-desktop">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/logo.png" class="logo"
+                            alt="logo" class="img-header-main mr-md-5"></a>
+                    <button (click)="isShowMenuMobile=!isShowMenuMobile" class="navbar-toggler" type="button"
+                        data-trigger="#navbar_main">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item nav-item-recipe dropdown nav-item-dropdown-custom"
+                                routerLinkActive="active">
+                                <a (click)="onBtnMenuAll()" data-toggle="dropdown"
+                                    class="nav-link itemMenuCustom cursor-pointer"> Shop </a>
+                                <i class="fas fa-caret-down "></i>
+
+                                <div class="dropdown-menu dropdown-menu-decktop" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="nav-item" *ngFor="let shopMenuCatgore of shopMenuCatgores">
+                                <a class="nav-link" (click)="navigatePageShopMenu(shopMenuCatgore)"
+                                    i18n>{{shopMenuCatgore?.Name}}</a>
+                            </li>
+                    </div>
+                    </li>
+
+                    <li class="nav-item nav-item-recipe dropdown nav-item-dropdown-custom" routerLinkActive="active">
+                        <!-- <a id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" class="nav-link" i18n></a> -->
+                        <a (click)="onBtnRecipeAll()" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                            class="nav-link itemMenuCustom cursor-pointer"> Công thức </a>
+                        <i class="fas fa-caret-down "></i>
+
+                        <div class="dropdown-menu dropdown-menu-decktop" aria-labelledby="navbarDropdownMenuLink">
+                    <li class="nav-item" *ngFor="let cateRecipe of listCateRecipe">
+                        <a class="nav-link" (click)="navigatePage(cateRecipe)" i18n>{{cateRecipe?.Name}}</a>
+                    </li>
+            </div>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/e1-blog/blog" i18n>Blog</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/f1-community/cong-dong" i18n>Cộng đồng</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/j1-about/gioi-thieu" i18n>Giới thiệu</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/i1-contact/lien-he" i18n>Liên hệ</a>
+            </li>
+            </ul>
+        </div>
+        <div class="nav-item dropdown block-user-login d-flex align-items-center" *ngIf="infoUser!=null">
+            <img width="42" height="42px" style="object-fit: cover;" [src]="infoUser?.Avatar" alt="avatar"
+                class="rounded-circle">
+            <a id="navbarDropdownUser" class="d-flex align-items-center nav-tab-a">
+                <p class="nav-link d-inline-block text-name">{{infoUser?.Fullname}}</p>
+                <div>
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </div>
+            </a>
+
+            <div class="dropdown-menu info-logout" aria-labelledby="navbarDropdownUser">
+                <a class="dropdown-item" routerLink="/manager/admin/a1-dashboard/theo-doi-ban-than" i18n>Thông tin
+                    tài khoản</a>
+                <a class="dropdown-item" i18n (click)="logOut()">Đăng xuất</a>
+            </div>
+        </div>
+        </nav>
+</div>
+</div>
+<div style="clear:both"></div>
+<!--end info first-->
+</header>
+<!--end header-->
+
+<!-- begin main -->
+<!-- <router-outlet></router-outlet> -->
+<div class="container">
+    <div class="container__login">
+        <div class="container__login-text text-center">
+            <h3> Lên kế hoạch bữa ăn đầu tiên của bạn</h3>
+            <H6>
+                Kế hoạch bữa ăn chuyên nghiệp của bạn đã sẵn sàng! Nhấp vào đăng nhập để trải nghiệm cùng chúng tôi nhé
+            </H6>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-login">
+            <button (click)="loginWithFacebook()" class="btn btn-login btn-fb" type="submit"> <img
+                    src="../../assets/images/14.png" class="img-login" alt="icon-login" /> Đăng nhập với
+                Facebook</button>
+
+        </div>
+        <div class="col-md-6 col-login">
+            <button (click)="loginWithGoogle()" class="btn btn-login btn-gg" type="submit"><img
+                    src="../../assets/images/icon-g+.png" class="img-login" alt="icon-login" /> Đăng nhập với
+                Google</button>
+        </div>
+
+        <div class="col-md-6 col-login mt-2">
+            <button (click)="isRegister = true" data-toggle="modal" data-target="#updateInformation"
+                class="btn btn-login btn-gg" type="submit"> <img src="../../assets/images/edit.png" class="img-login"
+                    alt="icon-login" /> Đăng ký tài khoản</button>
+
+        </div>
+        <div class="col-md-6 col-login mt-2">
+            <button data-toggle="modal" data-target="#login" class="btn btn-login btn-fb" type="submit"><img
+                    src="../../assets/images/login.png" class="img-login" alt="icon-login" /> Đăng nhập</button>
+        </div>
+
+    </div>
+</div>
+<!-- end main -->
+
+<!-- start footer -->
+<!-- <app-footer></app-footer> -->
+
+<!-- end footer -->
+</div>
+
+<button type="button" class="btn btn-primary" hidden="true" id="openModal" #updateInformation data-toggle="modal"
+    data-target="#updateInformation">
+    Launch demo modal
+</button>
+
+<button type="button" class="btn btn-primary" hidden="true" #login data-toggle="modal" data-target="#login">
+    Launch demo modal
+</button>
+
+<ng-template #recursiveListTmpl let-list="list" let-parent="parent">
+    <ng-container *ngFor="let item of list">
+        <li class="nav-item dropdown nav-item-dropdown-custom" routerLinkActive="active"
+            (click)="navigatePage(item?.Link)">
+            <a class="nav-link dropdown-toggle itemMenuCustom cursor-pointer" id="navbarDropdownMenuLink" role="button"
+                data-toggle="dropdown">
+                {{item?.Name}}
+            </a>
+            <i class="fas fa-caret-down" *ngIf="item && item['childs'] && item['childs'].length > 0"></i>
+            <!-- *ngIf="itemDataMenuChild.IdParent == itemDataMenuParent.id" -->
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                *ngIf="item['childs'] && item['childs'].length > 0">
+                <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: item['childs'], parent: false }">
+                </ng-container>
+            </div>
+        </li>
+    </ng-container>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="updateInformation" tabindex="-1" role="dialog" aria-labelledby="updateInformation"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 *ngIf="!isRegister" class="modal-title" id="exampleModalLongTitle">CẬP NHẬT THÔNG TIN TÀI KHOẢN</h5>
+                <h5 *ngIf="isRegister" class="modal-title" id="exampleModalLongTitle">ĐĂNG KÝ TÀI KHOẢN</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <article class="card-body">
+                                <span *ngIf="!isRegister" style="color: red">Vui lòng điền đủ thông tin để nhận
+                                    hàng</span>
+                                <span *ngIf="isRegister" style="color: red">Vui lòng điền đầy đủ thông tin để tạo tài
+                                    khoản</span>
+                                <form [formGroup]="form" class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="usr">Họ tên:</label>
+                                            <input formControlName="Name" [(ngModel)]="inputOrderMenu.Fullname"
+                                                type="text" class="form-control">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Name'].invalid && (form.controls['Name'].dirty || form.controls['Name'].touched)">
+                                                <div *ngIf="form.controls['Name'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="usr">Email:</label>
+                                            <input [readonly]="isDisabledEmail"
+                                                (focusout)="onCheckEmail(inputOrderMenu.Email)" formControlName="Email"
+                                                [(ngModel)]="inputOrderMenu.Email" type="text" class="form-control">
+                                            <div *ngIf="isCheckEmail" class="alert alert-danger">
+                                                <span><i class="fas fa-times-circle"></i> Email đã tồn tại</span>
+                                            </div>
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Email'].invalid  && (form.controls['Email'].dirty || form.controls['Email'].touched)">
+                                                <div *ngIf="form.controls['Email'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form.controls['Email'].errors.email" i18n>
+                                                    Vui lòng nhập đúng định dạng email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sel">Tỉnh:</label>
+                                            <select formControlName="City" class="form-control" id="sel"
+                                                [(ngModel)]="inputOrderMenu.IdCity" (change)="getDistrictWithCity()">
+                                                <option *ngFor="let item of CityDatas" [value]="item.id">
+                                                    {{item.Name}}</option>
+                                            </select>
+
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['City'].invalid  && (form.controls['City'].dirty || form.controls['City'].touched)">
+                                                <div *ngIf="form.controls['City'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sel1">Quận huyện:</label>
+                                            <select formControlName="District" [(ngModel)]="inputOrderMenu.IdDistrict"
+                                                class="form-control" id="sel1">
+                                                <option *ngFor="let item of DistrictDatas" [value]="item.id">
+                                                    {{item.Name}}
+                                                </option>
+                                            </select>
+                                            <div class="alert alert-danger" *ngIf="form.controls['District'].invalid      
+                                            && (form.controls['District'].dirty || form.controls['District'].touched)">
+                                                <div *ngIf="form.controls['District'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="pwd">Địa chỉ:</label>
+                                            <input formControlName="Address" [(ngModel)]="inputOrderMenu.Address"
+                                                type="text" class="form-control" id="pwd" name="Address">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Address'].invalid  && (form.controls['Address'].dirty || form.controls['Address'].touched)">
+                                                <div *ngIf="form.controls['Address'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="pwd">Số điện thoại:</label>
+                                            <input formControlName="Phone" [(ngModel)]="inputOrderMenu.Phone"
+                                                type="text" class="form-control">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Phone'].invalid && (form.controls['Phone'].dirty || form.controls['Phone'].touched)">
+                                                <div *ngIf="form.controls['Phone'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form.controls['Phone'].errors.pattern" i18n>
+                                                    Vui lòng nhập số
+                                                </div>
+                                                <div *ngIf="form.controls['Phone'].errors.minlength" i18n>
+                                                    Số điện thoại tối thiểu 10 ký tự
+                                                </div>
+                                                <div *ngIf="form.controls['Phone'].errors.maxlength" i18n>
+                                                    Số điện thoại tối đa 11 ký tự
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sel1">Giới tính</label>
+                                            <select formControlName="Sex" [(ngModel)]="inputOrderMenu.Sex"
+                                                class="form-control">
+                                                <option value="1"> Nam </option>
+                                                <option value="0"> Nữ </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+
+                                <form [formGroup]="form1">
+                                    <div class="row">
+                                        <div *ngIf="isRegister" class="form-group col-md-6">
+                                            <label>Tạo mật khẩu</label>
+                                            <input [(ngModel)]="inputOrderMenu.Password" formControlName="password"
+                                                type="password" class="form-control" placeholder="Nhập mật khẩu">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form1.controls['password'].invalid  && (form1.controls['password'].dirty || form1.controls['password'].touched)">
+                                                <div *ngIf="form1.controls['password'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form1.controls['password'].errors.minlength" i18n>
+                                                    Mật khẩu ít nhất 6 ký tự
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div *ngIf="isRegister" class="form-group col-md-6">
+                                            <label>Nhập lại mật khẩu</label>
+                                            <input formControlName="repassword" type="password" class="form-control"
+                                                placeholder="Nhập lại mật khẩu">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form1.controls['repassword'].invalid  && (form1.controls['repassword'].dirty || form1.controls['repassword'].touched)">
+                                                <div *ngIf="form1.controls['repassword'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form1.controls['repassword'].errors.mustMatch">
+                                                    Mật mới chưa trùng
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+
+                                        <button *ngIf="!isRegister" data-dismiss="modal" (click)="onBtnSummit()"
+                                            type="submit" class="btn btn-primary btn-block"> CẬP NHẬT </button>
+                                        <button *ngIf="isRegister" data-dismiss="modal" (click)="onBtnSummit()"
+                                            type="submit" class="btn btn-primary btn-block"> ĐĂNG KÝ </button>
+                                        <button *ngIf="isRegister" data-dismiss="modal" type="submit"
+                                            class="btn btn-danger btn-block"> HUỶ </button>
+
+
+                                    </div>
+                                </form>
+                            </article>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title" id="exampleModalLongTitle">ĐĂNG NHẬP TÀI KHOẢN</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <article class="card-body">
+
+                                <form [formGroup]="form2" class="row">
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="usr">Email:</label>
+                                            <input formControlName="Email" [(ngModel)]="inputLogin.Email" type="text"
+                                                class="form-control">
+
+                                            <div class="alert alert-danger"
+                                                *ngIf="form2.controls['Email'].invalid  && (form2.controls['Email'].dirty || form2.controls['Email'].touched)">
+                                                <div *ngIf="form2.controls['Email'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form2.controls['Email'].errors.email" i18n>
+                                                    Vui lòng nhập đúng định dạng email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Mật khẩu</label>
+                                        <input [(ngModel)]="inputLogin.Password" formControlName="password"
+                                            type="password" class="form-control" placeholder="Nhập mật khẩu">
+                                        <div class="alert alert-danger"
+                                            *ngIf="form2.controls['password'].invalid  && (form2.controls['password'].dirty || form2.controls['password'].touched)">
+                                            <div *ngIf="form2.controls['password'].errors.required" i18n>
+                                                Vui lòng nhập trường này.
+                                            </div>
+                                            <div *ngIf="form2.controls['password'].errors.minlength" i18n>
+                                                Mật khẩu ít nhất 6 ký tự
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+
+                                <div class="col-md-12">
+                                    <button data-dismiss="modal" (click)="btnLogin()" type="submit"
+                                        class="btn btn-primary btn-block"> ĐĂNG NHẬP </button>
+                                    <button data-dismiss="modal" type="submit" class="btn btn-danger btn-block"> HUỶ
+                                    </button>
+
+
+                                </div>
+                            </article>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

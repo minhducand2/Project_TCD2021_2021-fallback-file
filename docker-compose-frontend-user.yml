@@ -1,0 +1,16 @@
+version: '3'
+services:
+  
+  angular-ui-user:
+    build:
+      context: ./frontend-user
+      dockerfile: Dockerfile-dev
+    ports:
+      - "5000:5000"
+    container_name: angular-ui-user
+    volumes:
+       - ./frontend-user:/usr/src/app/frontend-user
+       - /usr/src/app/frontend-user/node_modules 
+
+volumes:
+  container-volume:

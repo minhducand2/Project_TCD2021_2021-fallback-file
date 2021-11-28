@@ -1,0 +1,55 @@
+<div class="row user-profile">
+  <div class="col-12">
+    <h3 style="color: var(--main-color)">Order Place</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Mã đơn hàng</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col">Tổng tiền</th>
+          <th scope="col">Lời nhắn</th>
+          <th scope="col">Hành động</th>
+          <th scope="col">Thời gian mua hàng</th>
+          <th>Chi tiết</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataOderMenu">
+          <th scope="row">{{item?.stt}}</th>
+          <td> #{{item?.id}} </td>
+          <td>{{getDisplayOrderStatusById(item?.IdOrderStatus)}}</td>
+          <td>{{item?.TotalPrice | currency:'VND': true}}</td>
+          <td> {{item?.Note}} </td>
+          <td> <button (click)="onClickCancelOrder(item)" class="btn btn-radius" i18n data-toggle="modal"
+              data-target="#exampleModal"> Huỷ đơn</button> </td>
+          <td> {{item?.CreatedAt | date:'HH:mm dd/MM/yyyy'}} </td>
+          <td><a style="cursor: pointer" (click)="onViewsClick(item?.id)"><i style="color:var(--main-color)"
+                class="fas fa-eye"></i></a></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span style="color:red" i18n>HUỶ ĐƠN HÀNG</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" i18n>
+        Bạn có thực sự muốn huỷ đơn hàng? Hành động này không thể được hoàn tác.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" i18n>Hủy</button>
+        <button type="button" class="btn btn-danger" (click)="onBtnDelClick()" data-dismiss="modal" i18n>Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>INFOMATION BANNER</h5>
+  </div>
+  <mat-card-content>
+
+    <!-- <div class="row" style="margin-bottom:15px;">
+      <div class="col-md-3">
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+      </div>
+      <div class="col-md-4">
+        <span class="upload" *ngIf="progress > 0">
+          {{progress}}%
+        </span>
+        <span class="upload" *ngIf="message">
+          {{message}}
+        </span>
+        <img src="https://localhost:44321/Resources/Images/2021_04_22_14_34_48_logo-admin.png" >
+      </div>
+    </div> -->
+
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+        <!-- Image field -->
+        <div class="col-md-12">
+          <mat-card class="example-full-width" style="box-shadow: none; padding-left: 0;">
+            <mat-card-actions style="margin: 0; padding: 0;">
+              <button i18n style="border: 1px solid red; border-radius: 3px; float: left; width: 200px;" mat-button
+                color="warn" (click)="file.click()">
+                <mat-icon>file_upload</mat-icon>
+                Images
+              </button>
+              <span class="upload" *ngIf="progress > 0">
+                {{progress}}%
+              </span>
+              <span class="upload" *ngIf="message">
+                {{message}}
+              </span>
+              <input type="file" formControlName="Image" (change)="uploadFile(file.files)" #file style="display: none"
+                multiple="multiple" accept="image/*" />
+            </mat-card-actions>
+          </mat-card>
+          <img class="custom-preview-file" *ngIf="input.Image!=''" [src]="input.Image" alt="izi software" width="200"
+            height="200">
+
+          <div class="alert alert-danger" *ngIf="form.controls['Image'].invalid      
+              && (form.controls['Image'].dirty || form.controls['Image'].touched)">
+            <div *ngIf="form.controls['Image'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Position field -->
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <mat-label i18n>Position <span class="text-red">*</span></mat-label>
+            <input matInput type="number" [(ngModel)]="input.Position" formControlName="Position">
+          </mat-form-field>
+
+          <div class="alert alert-danger" *ngIf="form.controls['Position'].invalid      
+              && (form.controls['Position'].dirty || form.controls['Position'].touched)">
+            <div *ngIf="form.controls['Position'].errors.required" i18n>
+              Please enter this field.
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </form>
+  </mat-card-content>
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()"
+      class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card>

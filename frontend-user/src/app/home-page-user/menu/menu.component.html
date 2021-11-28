@@ -1,0 +1,237 @@
+<div class="app">
+    <!--header start-->
+    <header class="header">
+        <!--start info first-->
+        <div class="header-top align-items-center display-desktop">
+            <div class="container">
+                <div class="row menu-user">
+                    <div class="col-md-6 col-header-top-left">
+                        <ul class="ul-top-first">
+                            <li>
+                                <a [href]="headerInfo?.phoneHref"><i class="fas fa-phone-square-alt"></i>
+                                    {{headerInfo?.Phone}}</a>
+                            </li>
+                            <li>
+                                <a [href]="headerInfo?.mailHref"> <i class="fas fa-envelope"></i>
+                                    {{headerInfo?.Mail}}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-header-top body">
+                        <ul class="ul-top-first">
+
+
+                            <li *ngIf="userValue==null" (click)="onBtnLoginSocialClick()"><a>
+                                    <i style="color:#39C0ED" class="fas fa-sign-in-alt mr-1"></i>LOGIN</a></li>
+                            <li *ngIf="userValue!=null" class="icon-card">
+                                <a routerLink="/g1-cart/cart" style="cursor: pointer;">
+                                    <span><i style="color:#39C0ED" class="fas fa-cart-plus"></i></span>
+                                    <span *ngIf="amount>0" class='badge badge-danger' id='lblCartCount'> {{amount}}
+                                    </span>
+                                </a>
+                            </li>
+
+
+                            <li *ngIf="userValue!=null" style="cursor: pointer" class="blog dropdown"><a><span><i
+                                            style="color:#39C0ED" class="fas fa-user"></i></span>
+                                    {{userValue?.Fullname}}</a>
+                                <span class="selector"></span>
+                                <ul>
+                                    <li style="cursor: pointer; margin: 0px;">
+                                        <a routerLink="/manager/admin/c1-account/Account"
+                                            class="dropdown-a-profile"><span><i style="color:#39C0ED"
+                                                    class="fas fa-info"></i></span> Infomation</a>
+                                    </li>
+                                    <li (click)="logOut()" style="cursor: pointer;margin: 0px;">
+                                        <a class="dropdown-a-profile"><span><i style="color:#39C0ED"
+                                                    class="fas fa-sign-out-alt"></i></span> Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav id="navbar" class="push better-nav">
+            <div class="container">
+                <div class="head">
+                    <a href="#" class="brand">
+                        <div class="logo">
+                            <img class="image" [src]="headerInfo.Logo"> 
+                        </div>
+                        <!-- <div class="title">
+                            <h3>Fixed</h3>
+                        </div> -->
+                    </a>
+                </div>
+                <div class="body">
+                    <ul>
+                        <li style="cursor: pointer" routerLinkActive="active" class="blog dropdown"><a
+                                (click)="navigatePageShopMenu(0, 'all')">Shop</a>
+                            <span class="selector"></span>
+                            <ul>
+                                <li style="cursor: pointer" *ngFor="let item of shopMenuCatgores">
+                                    <a (click)="navigatePageShopMenu(item?.id, item?.Name)"
+                                        class="dropdown-a">{{item?.Name}}</a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <li class="page" routerLinkActive="active"><a routerLink="/j1-about/About">About</a></li>
+
+                        <li class="page" routerLinkActive="active"><a routerLink="/i1-contact/Contacts">Contacts</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="input-search">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input type="search" [(ngModel)]="keyword" placeholder="Search keyword" id="form1"
+                                class="form-control" />
+
+                        </div>
+                        <button (click)="navigatePageSearch()" type="button" class="btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="toggle">
+                    <a (click)="isShowMenuMobile=!isShowMenuMobile">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <!-- menu moble -->
+                <nav id="navbar_main"
+                    [ngClass]="isShowMenuMobile ? 'mobile-offcanvas navbar navbar-expand-lg navbar-dark display-mobile show' : 'mobile-offcanvas navbar navbar-expand-lg navbar-dark display-mobile'">
+                    <div class="offcanvas-header">
+
+                        <button (click)="isShowMenuMobile=!isShowMenuMobile"
+                            class="btn btn-danger btn-close float-right">
+                            &times; </button>
+
+                        <a class="navbar-brand" routerLink="/">
+                            <!-- <img src="../../../assets/images/logo-admin1.png" class="logo"
+                            alt="logo" class="img-header-main mr-md-5"> -->
+                            <svg class="logo" width="145" height="39" viewBox="0 0 145 39" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                    <path
+                                        d="M0.794556 39H13.9041C20.1205 39 25.1599 33.9172 25.1599 27.6472H12.0503C5.83391 27.6472 0.794556 32.73 0.794556 39Z"
+                                        fill="#F22BB2" />
+                                    <path
+                                        d="M1.38098 11.3527V28.0479C7.59734 28.0479 12.6367 22.9652 12.6367 16.6952V0C6.42033 0 1.38098 5.0828 1.38098 11.3527Z"
+                                        fill="#8C30F5" />
+                                    <path
+                                        d="M37.8721 0H24.7625C18.5462 0 13.5068 5.08279 13.5068 11.3527H26.6164C32.8328 11.3527 37.8721 6.26994 37.8721 0Z"
+                                        fill="#FE9A22" />
+                                    <path
+                                        d="M37.8722 26.9794V10.2842C31.6558 10.2842 26.6165 15.367 26.6165 21.6369V38.3321C32.8328 38.3321 37.8722 33.2493 37.8722 26.9794Z"
+                                        fill="#2EC5CE" />
+                                </g>
+                                <path d="M55.7905 24.9601V9.75011H51.3715V29.2501H62.6953V24.9601H55.7905Z"
+                                    fill="#0B0D17" />
+                                <path
+                                    d="M74.3943 15.3215V16.6308C73.4829 15.5723 72.1295 14.9315 70.2791 14.9315C66.661 14.9315 63.6781 18.1351 63.6781 22.2858C63.6781 26.4365 66.661 29.6401 70.2791 29.6401C72.1295 29.6401 73.4829 28.9994 74.3943 27.9408V29.2501H78.5372V15.3215H74.3943ZM71.1076 25.6844C69.2019 25.6844 67.821 24.3751 67.821 22.2858C67.821 20.1965 69.2019 18.8873 71.1076 18.8873C73.0134 18.8873 74.3943 20.1965 74.3943 22.2858C74.3943 24.3751 73.0134 25.6844 71.1076 25.6844Z"
+                                    fill="#0B0D17" />
+                                <path
+                                    d="M89.6689 14.9315C87.8461 14.9315 86.4651 15.6001 85.7194 16.6308V15.3215H81.5766V29.2501H85.7194V21.6451C85.7194 19.6673 86.7689 18.7758 88.288 18.7758C89.6137 18.7758 90.6908 19.5837 90.6908 21.3108V29.2501H94.8337V20.698C94.8337 16.9373 92.4585 14.9315 89.6689 14.9315Z"
+                                    fill="#0B0D17" />
+                                <path
+                                    d="M107.704 9.75011V16.6308C106.793 15.5723 105.44 14.9315 103.589 14.9315C99.9711 14.9315 96.9882 18.1351 96.9882 22.2858C96.9882 26.4365 99.9711 29.6401 103.589 29.6401C105.44 29.6401 106.793 28.9994 107.704 27.9408V29.2501H111.847V9.75011H107.704ZM104.418 25.6844C102.512 25.6844 101.131 24.3751 101.131 22.2858C101.131 20.1965 102.512 18.8873 104.418 18.8873C106.323 18.8873 107.704 20.1965 107.704 22.2858C107.704 24.3751 106.323 25.6844 104.418 25.6844Z"
+                                    fill="#0B0D17" />
+                                <path
+                                    d="M116.958 14.0958C118.311 14.0958 119.444 12.9537 119.444 11.5887C119.444 10.2237 118.311 9.08154 116.958 9.08154C115.605 9.08154 114.472 10.2237 114.472 11.5887C114.472 12.9537 115.605 14.0958 116.958 14.0958ZM114.887 29.2501H119.029V15.3215H114.887V29.2501Z"
+                                    fill="#0B0D17" />
+                                <path
+                                    d="M129.656 13.3715V9.36011C125.072 9.08154 122.945 11.4215 122.945 15.3215H121.094V19.333H122.945V29.2501H127.088V19.333H129.656V15.3215H127.088C127.088 13.7058 128.11 13.2323 129.656 13.3715Z"
+                                    fill="#0B0D17" />
+                                <path
+                                    d="M140.417 15.3215L137.821 23.8458L134.755 15.3215H130.198L135.694 28.6094C135.087 30.3087 134.175 30.9215 132.242 30.9215V34.8215C136.108 35.0165 138.567 33.2615 140.113 28.8323L144.836 15.3215H140.417Z"
+                                    fill="#0B0D17" />
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="38.6667" height="39" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+
+                    </div>
+
+                    <ul class="navbar-nav nav-mobile"> 
+                        <li class="nav-item dropdown">
+
+                            <a (click)="isClass1Show=!isClass1Show" class="nav-link menu-icon"> Shop</a>
+                            <ul [ngClass]="isClass1Show ? 'dropdown-menu show dropdown-menu-mobile' : 'dropdown-menu'">
+                                <li class="li-dropdown" *ngFor="let item of shopMenuCatgores">
+                                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="dropdown-item"
+                                        (click)="navigatePage(item)" i18n>{{item?.Name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item li-hover" routerLinkActive="active">
+                            <a (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-link"
+                                routerLink="/j1-about/About" i18n> About</a>
+                        </li>
+                        <li class="nav-item li-hover" routerLinkActive="active">
+                            <a (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-link"
+                                routerLink="/i1-contact/Contacts" i18n> Contacts</a>
+                        </li> 
+
+                        <li class="nav-item dropdown" *ngIf="infoUser!=null">
+
+                            <a (click)="isClassShowAccountMobile=!isClassShowAccountMobile" class="nav-link menu-icon">
+                                <img width="42" height="42px" style="object-fit: cover;" [src]="infoUser?.Avatar"
+                                    alt="avatar" class="rounded-circle"> {{infoUser?.Fullname}}
+                            </a>
+                            <ul [ngClass]="isClassShowAccountMobile? 'dropdown-menu show' : 'dropdown-menu'">
+
+                                <li class="li-dropdown">
+
+                                    <a (click)="isShowMenuMobile=!isShowMenuMobile" class="dropdown-item"
+                                        routerLink="/manager/admin/c1-account/Account" i18n> Infomation Account </a>
+                                </li>
+                                <li class="li-dropdown">
+                                    <a class="dropdown-item" i18n (click)="logOut()"> Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li (click)="isShowMenuMobile=!isShowMenuMobile" class="nav-item li-hover"
+                            *ngIf="infoUser==null" (click)="onBtnLoginSocialClick()"><a>
+                                <i style="color: #39C0ED;" class="fas fa-sign-in-alt mr-1"></i> LOGIN</a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- end menu mobile -->
+            </div>
+        </nav>
+
+        <!--end info first-->
+    </header>
+
+
+    <!--end header-->
+
+    <!-- begin main -->
+    <router-outlet></router-outlet>
+    <!-- end main -->
+
+    <!-- start footer -->
+    <app-footer></app-footer>
+    <!-- end footer -->
+</div>

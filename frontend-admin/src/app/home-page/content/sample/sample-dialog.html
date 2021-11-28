@@ -1,0 +1,24 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>{{phuong0}}</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+        {{phuong1}}   
+
+      </div>
+    </form>
+  </mat-card-content> 
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()" class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card> 

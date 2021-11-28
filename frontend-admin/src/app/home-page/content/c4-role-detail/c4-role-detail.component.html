@@ -1,0 +1,155 @@
+<mat-card class="title-block">
+  <div class="row">
+    <div class="col-md-12 title-main">
+      <p i18n>Manager Phòng Ban</p>
+    </div>
+  </div>
+</mat-card>
+
+<!-- select-top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <div class="col-md-9 col-xs-12">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Fill keywords you are looking for.."
+          i18n-placeholder>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <div class="example-button-row contain-button-filter">
+        <button type="button" class="border-0 btn btn-success btn-filter w-120" i18n><i class="fa fa-filter"></i>Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- filter -top -->
+<mat-card class="system-custom">
+  <div class="row">
+
+  
+  </div>
+  <div class="row">
+  </div>
+</mat-card>
+<!--  end filter-top -->  
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+  <div class="row">
+    <div class="col-md-12" *ngIf="isPermissionMenu1">
+      <button type="button" class="btn btn-warning mr-3 btn-add w-120" (click)="onBtnRoleClick()" i18n><i
+          class="fa fa-plus"></i> Phòng ban </button>
+<!-- 
+      <button type="button" class="btn btn-success mr-3 btn-add-mobile w-120" (click)="onBtnInsertDataClick()" i18n><i
+          class="fa fa-plus"></i> Add </button>
+      <!-- <button type="button" class="btn btn-primary d-inline-block mr-3 btn-accept w-120" i18n><i
+          class="fa fa-check"></i>
+        Duyệt</button> -->
+      <button type="button" class="btn btn-danger btn-del w-120" data-toggle="modal" data-target="#exampleModal" i18n><i 
+          class="mdi mdi-delete"></i>Delete</button>                                                                         -->
+
+    </div>
+  </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 wp-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 grid-data-custom">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="check-custom">
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- id Column -->                                                    
+    <ng-container matColumnDef="id">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> ID </th> 
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>                
+    </ng-container>      
+    
+    <!-- IdParentMenu Column -->                                                    
+    <ng-container matColumnDef="IdParentMenu">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Menu Cha </th> 
+      <td mat-cell *matCellDef="let row"> {{getDisplayMenuById(row.IdParentMenu)}} </td>                
+    </ng-container>     
+
+    <!-- IsGroup Column -->                                                    
+    <ng-container matColumnDef="IsGroup">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> GROUP </th> 
+      <td mat-cell *matCellDef="let row"> {{row.IsGroup == 0 ? '' :'YES'}} </td>                
+    </ng-container>     
+
+    <!-- Name Column -->                                                    
+    <ng-container matColumnDef="Name">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Name </th> 
+      <td mat-cell *matCellDef="let row"> 
+        <span style="font-weight: 700;" *ngIf="row.IsGroup == 1 || row.IdParentMenu == 0">{{row.Name}}</span>
+        <span style="margin-left: 20px;" *ngIf="!(row.IsGroup == 1 || row.IdParentMenu == 0)">{{row.Name}}</span>
+        <!-- {{row.IsGroup == 1 ? row.Name :'-- '+ row.Name}} -->
+       </td>                
+    </ng-container>                      
+
+    <!-- Status Column -->                                                    
+    <ng-container matColumnDef="Status">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Quyền </th> 
+      <td mat-cell *matCellDef="let row"> 
+        <mat-radio-group (change)="onRoleChange(row)" [(ngModel)]="row.Status" aria-label="Select an option">
+          <mat-radio-button value="0">Không có quyền</mat-radio-button>
+          <mat-radio-button value="1">Chỉ xem</mat-radio-button>
+          <mat-radio-button value="2">Quản trị</mat-radio-button>
+        </mat-radio-group>
+      </td>                
+    </ng-container>                                                          
+
+    <!-- update -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef i18n style="text-transform:uppercase">Edit</th>
+      <td mat-cell *matCellDef="let row">
+        <i style="cursor: pointer;" *ngIf="isPermissionMenu1" (click)="onBtnUpdateDataClick(row)"
+          class="icon-note icon-update" title="Edit"></i>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+</div>
+<!-- pagination -->
+<mat-paginator [pageIndex]="pageIndex" [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+
+
+<!-- Accuracy delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span style="color:red" i18n>Confirm dialog</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" i18n>
+        Do you really want to delete these records? This process cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" i18n>Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="onBtnDelClick()" data-dismiss="modal" i18n>Accept</button>
+      </div>
+    </div>
+  </div>
+</div>

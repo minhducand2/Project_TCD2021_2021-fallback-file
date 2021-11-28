@@ -1,0 +1,1 @@
+sudo docker-compose -f docker-compose-frontend-admin.yml down; sudo docker-compose -f docker-compose-frontend-admin.yml up;

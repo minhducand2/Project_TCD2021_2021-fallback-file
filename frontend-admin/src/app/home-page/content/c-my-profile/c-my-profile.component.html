@@ -1,0 +1,206 @@
+<div class="row user-profile">
+  <div class="col-lg-4 side-left d-flex align-items-stretch">
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body avatar">
+            <h4 class="card-title" i18n>Infomation</h4>
+            <img [src]="staffInfoLogin.img" alt="logo">
+            <p class="name">{{staffInfoLogin.name}}</p>
+            <p class="designation">IZI SOFTWARE</p>
+            <a class="d-block text-center text-dark">{{staffInfoLogin.email}}</a>
+            <a class="d-block text-center text-dark">{{staffInfoLogin.phone}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 stretch-card">
+        <div class="card">
+          <div class="card-body overview">
+            <!-- <ul class="achivements">
+              <li>
+                <p>34</p>
+                <p i18n>Projects</p>
+              </li>
+              <li>
+                <p>23</p>
+                <p i18n>Task</p>
+              </li>
+              <li>
+                <p>29</p>
+                <p i18n>Completed</p>
+              </li>
+            </ul> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 side-right stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="wrapper d-block d-sm-flex align-items-center justify-content-between">
+          <h4 class="card-title mb-0" i18n>Detail</h4>
+          <ul class="nav nav-tabs tab-solid tab-solid-primary mb-0" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+                aria-expanded="true" i18n>Info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="avatar-tab" data-toggle="tab" href="#avatar" role="tab" aria-controls="avatar"
+                i18n>Avatar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="security-tab" data-toggle="tab" href="#security" role="tab"
+                aria-controls="security" i18n>Password</a>
+            </li>
+          </ul>
+        </div>
+        <div class="wrapper">
+          <hr>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info">
+              <form role="form" [formGroup]="form">
+
+                <!-- Tên -->
+                <div class="form-group">
+                  <label for="name" i18n>Full Name</label>
+                  <input type="text" formControlName="name" class="form-control" id="name"
+                    [(ngModel)]="staffInfoLogin.name">
+                </div>
+                <div
+                  *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)"
+                  class="alert alert-danger">
+                  <div *ngIf="form.controls['name'].errors.required" i18n>
+                    Please enter your name
+                  </div>
+                  <div *ngIf="form.controls['name'].errors.maxlength" i18n>
+                    You cannot enter more than 50 characters
+                  </div>
+                  <div *ngIf="form.controls['name'].errors.minlength" i18n>
+                    Please enter at least 5 characters
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input [(ngModel)]="staffInfoLogin.email" formControlName="email" type="email" class="form-control"
+                    id="email" disabled style="cursor:not-allowed">
+                </div>
+
+                <!-- Số điện thoai -->
+                <div class="form-group">
+                  <label for="mobile" i18n>Phone</label>
+                  <input [(ngModel)]="staffInfoLogin.phone" formControlName="phone" type="text" class="form-control"
+                    id="mobile">
+                </div>
+
+                <!-- địa chỉ -->
+                <div class="form-group">
+                  <label for="address" i18n>Address</label>
+                  <textarea [(ngModel)]="staffInfoLogin.address" formControlName="address" name="address" id="address"
+                    rows="6" class="form-control"></textarea>
+                </div>
+                <div class="form-group mt-5">
+                  <button type="submit" class="btn btn-success mr-2" (click)="onBtnUpdateClick()" i18n>Update</button>
+                </div>
+              </form>
+            </div>
+            <!-- tab content ends -->
+
+            <!-- avatar -->
+            <div class="tab-pane fade" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
+              <div class="col-md-12">
+                <img [src]=staffInfoLogin.img width="225px" class="m-x-auto img-fluid img-circle" alt="avatar">
+                <label class="custom-file">
+                  <div class="form-group">
+                    <input type="file" (change)="uploadFile(file.files)" #file style="display: none" multiple="multiple"
+                      accept="image/*" />
+                  </div>
+                  <button [disabled]="Image!=''" (click)="file.click()" class="btn btn-info"
+                    (click)="onBtnUploadImgClick()" i18n>
+                    <i class="fas fa-image"></i> Choose image</button>
+                  <button class="btn btn-success ml-2" (click)="onBtnUploadImgClick()" i18n>
+                    <i class="fas fa-upload"></i> Upload image</button>
+                </label>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+              <!-- start form -->
+              <form [formGroup]="formresetpass">
+
+                <!--password old-->
+                <div class="form-group">
+                  <label for="change-password" i18n>Change password</label>
+                  <input type="password" class="form-control" formControlName="password" [(ngModel)]="oldpassword"
+                    id="change-password" placeholder="Fill current password" i18n-placeholder>
+                </div>
+                <div
+                  *ngIf="formresetpass.controls['password'].invalid && (formresetpass.controls['password'].dirty || formresetpass.controls['password'].touched)"
+                  class="alert alert-danger form-custom">
+                  <div *ngIf="formresetpass.controls['password'].errors.required" i18n>
+                    Please enter current password
+                  </div>
+                  <div *ngIf="formresetpass.controls['password'].errors.maxlength" i18n>
+                    Password must not exceed 50 characters
+                  </div>
+                  <div *ngIf="formresetpass.controls['password'].errors.minlength" i18n>
+                    Password at least 8 characters
+                  </div>
+                </div>
+
+                <!-- mật khẩu mới -->
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="newpassword" id="new-password"
+                    [(ngModel)]="newpassword" placeholder="Fill a new password" i18n-placeholder>
+                </div>
+                <div
+                  *ngIf="formresetpass.controls['newpassword'].invalid && (formresetpass.controls['newpassword'].dirty || formresetpass.controls['newpassword'].touched)"
+                  class="alert alert-danger formresetpass-custom">
+                  <div *ngIf="formresetpass.controls['newpassword'].errors.required" i18n>
+                    You must enter a new password
+                  </div>
+                  <div *ngIf="formresetpass.controls['newpassword'].errors.maxlength" i18n>
+                    Password must not exceed 50 characters
+                  </div>
+                  <div *ngIf="formresetpass.controls['newpassword'].errors.minlength" i18n>
+                    Password at least 8 characters
+                  </div>
+                </div>
+
+                <!-- match mật khẩu -->
+                <div class="form-group">
+                  <input type="password" formControlName="repassword" class="form-control" [(ngModel)]="repassword"
+                    id="change-password" placeholder="Fill a new password" i18n-placeholder>
+                </div>
+                <div
+                  *ngIf="formresetpass.controls['repassword'].invalid && (formresetpass.controls['repassword'].dirty || formresetpass.controls['repassword'].touched)"
+                  class="alert alert-danger formresetpass-custom">
+                  <div *ngIf="formresetpass.controls['repassword'].errors.required" i18n>
+                    You must enter a new password
+                  </div>
+                  <div *ngIf="formresetpass.controls['repassword'].errors.maxlength" i18n>
+                    Password must not exceed 50 characters
+                  </div>
+                  <div *ngIf="formresetpass.controls['repassword'].errors.minlength" i18n>
+                    Password at least 8 characters
+                  </div>
+                  <div *ngIf="formresetpass.controls['repassword'].errors.mustMatch" i18n>
+                    Password did not match
+                  </div>
+                </div>
+
+                <div class="form-group mt-5">
+                  <button type="submit" class="btn btn-success mr-2" (click)="onChangePassClick()" i18n>Update</button>
+                  <button class="btn btn-outline-danger" (click)="onBtnCancelClick()" i18n>Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

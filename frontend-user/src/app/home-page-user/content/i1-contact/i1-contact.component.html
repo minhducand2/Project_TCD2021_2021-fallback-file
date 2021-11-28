@@ -1,0 +1,102 @@
+<div class="app">
+
+    <div class="banner__header">
+    </div>
+    <!--end nav-->
+
+    <!--start container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4 container__contact">
+                <div class="address">
+                    <h4>ADDRESS</h4>
+                    <h6><i class="fas fa-map-marker-alt"></i> {{contactInfo.Address}}</h6>
+                    <h6><a href='{{contactInfo.Tel}}'><i class="fas fa-phone"></i> {{contactInfo.Phone}}</a></h6>
+                    <h6><a href='{{contactInfo.ToMail}}'><i class="fas fa-envelope"></i> {{contactInfo.Mail}}</a>
+                    </h6>
+                </div>
+                <div class="working-hours">
+                    <h4> WORKING HOURS </h4>
+                    <h6> {{contactInfo.Working}}</h6>
+                </div>
+                <div class="follow-us">
+                    <h4>FOLLOW US</h4>
+                    <ul class="list-unstyled list-inline social">
+                        <li class="list-inline-item"><a href="{{contactInfo.Facebook}}" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+                        <li class="list-inline-item" *ngIf="contactInfo.Twitter != ''"><a href="{{contactInfo.Twitter}}" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+                        <li class="list-inline-item"><a href="{{contactInfo.Instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a href="{{contactInfo.Youtube}}" target="_blank"><i class="fab fa-youtube-square"></i></a></li>
+                        <li class="list-inline-item"><a href="{{contactInfo.ToMail}}" target="_blank"><i class="far fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6 container__map" [innerHtml]="Map">
+              
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+    <div class="banner__contact">
+        <div class="container">
+            <div class="fanner__contact-form">
+                <h3>
+                    Got Question?
+                </h3>
+                <h4>
+                    Get in touch with us
+                </h4>
+                <form [formGroup]="form">
+                    <div class="form-group ">
+                        <input type="text" class="form-control" formControlName="fullName" [(ngModel)]="Name" placeholder="Fill name..." id="usr">
+                        <div *ngIf="form.controls['fullName'].invalid && (form.controls['fullName'].dirty || form.controls['fullName'].touched)" class="alert alert-danger form-custom mt-1">
+                            <div *ngIf="form.controls['fullName'].errors.required">
+                                Vui lòng nhập tên của bạn
+                            </div>
+                            <div *ngIf="form.controls['fullName'].errors.maxlength">
+                                Bạn không được nhập quá 100 ký tự
+                            </div>
+                            <div *ngIf="form.controls['fullName'].errors.minlength">
+                                Tên của bạn tối thiểu 5 ký tự
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <input class="form-control" formControlName="Email" [(ngModel)]="Email" placeholder="Fill email..." id="pwd">
+                        <div *ngIf="form.controls['Email'].invalid && (form.controls['Email'].dirty || form.controls['Email'].touched)" class="alert alert-danger form-custom mt-1">
+                            <div *ngIf="form.controls['Email'].errors.required">
+                                Vui lòng nhập Email của bạn
+                            </div>
+                            <div *ngIf="form.controls['Email'].errors.maxlength">
+                                Bạn không được nhập quá 100 ký tự
+                            </div>
+                            <div *ngIf="form.controls['Email'].errors.minlength">
+                                Email của bạn tối thiểu 5 ký tự
+                            </div>
+                            <div *ngIf="form.controls['Email'].errors.pattern">
+                                Email chưa đúng định dạng
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <textarea class="form-control" formControlName="Message" [(ngModel)]="Message" placeholder="Fill message.." rows="5" id="comment"></textarea>
+                        <div *ngIf="form.controls['Message'].invalid && (form.controls['Message'].dirty || form.controls['Message'].touched)" class="alert alert-danger form-custom mt-1">
+                            <div *ngIf="form.controls['Message'].errors.required">
+                                Vui lòng nhập lời nhắn của bạn
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" (click)="onClickInsertContact()" class="btn btn-primary col-md-12" style="background:var(--main-color);border:none">GỬI THÔNG TIN</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

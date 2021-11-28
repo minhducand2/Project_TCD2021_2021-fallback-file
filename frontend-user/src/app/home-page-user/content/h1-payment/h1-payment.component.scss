@@ -1,0 +1,306 @@
+/*start container*/
+
+.container__search {
+    .container__search-navigate {
+        .breadcrumb {
+            padding: 10px 15px;
+            background-color: white;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.07);
+            li {
+                a {
+                    font-size: 15px;
+                    color: #6c757d;
+                }
+            }
+            .navigate-menu {
+                a {
+                    color: var(--main-color);
+                }
+            }
+        }
+    }
+    .container__info {
+        margin: 10px 0 10px 0;
+        .container__info-recipe {
+            padding-bottom: 10px;
+            .food-menu {
+                border-bottom: 3px solid var(--main-color);
+                color: black;
+                font-weight: 500;
+                font-size: 20px;
+                padding-bottom: 3px
+            }
+        }
+        .container__info-form {
+            padding-top: 20px;
+            .shipping-method {
+                padding-top: 15px;
+                .shipping-method-title {
+                    font-size: 17px;
+                    line-height: 21px;
+                }
+                .radio-button {
+                    border: 1px solid #f1f1f1;
+                    padding: 10px;
+                    background-color: white;
+                    padding-left: 30px;
+                    display: flex;
+                    justify-content: space-between;
+                    .radio-input {
+                        margin-right: 10px;
+                        color: var(--main-color) !important;
+                    }
+                }
+            }
+            .pay-method {
+                padding-top: 15px;
+                .pay-method-title {
+                    font-size: 17px;
+                    line-height: 21px;
+                }
+                .radio-button {
+                    border: 1px solid #f1f1f1;
+                    padding: 10px 0px 10px 30px;
+                    background-color: white;
+                    .radio-input {
+                        margin-right: 10px;
+                    }
+                }
+                .content-pay-method {
+                    border: 1px solid #f1f1f1;
+                    text-align: center;
+                    background: #fafafa;
+                    padding: 20px 0px 20px 15px;
+                    text-align: left;
+                    @media (max-width: 420px) {
+                        margin-top: 20px;
+                        padding: 20px 10px;
+                    }
+                    .info-acc {
+                        color: var(--main-color);
+                        text-align: center;
+                    }
+                    h5:nth-child(2) {
+                        @media (max-width: 420px) {
+                            font-size: 16px;
+                        }
+                    }
+                    h6 {
+                        font-weight: 400;
+                        b {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+        .info-order {
+            margin-top: 20px;
+            .sub-title {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 4px;
+                border-bottom: 1px solid #DDDDDD;
+                h5 {
+                    font-weight: 550;
+                    font-size: 15px;
+                    line-height: 24px;
+                    color: #333333;
+                }
+            }
+            .sub-pro {
+                display: flex;
+                padding: 18px 0;
+                border-bottom: 1px solid #DDDDDD;
+                justify-content: space-between;
+                .sub-pro-left {
+                    display: flex;
+                    @media(max-width: 768px) {
+                        padding-right: 5px;
+                    }
+                    .sub-pro-img {
+                        position: relative;
+                        img {
+                            width: 80px;
+                            height: 90px;
+                            border-radius: 5px;
+                        }
+                        .position-title {
+                            position: absolute;
+                            left: 85.23%;
+                            top: -12%;
+                            background-color: #949090;
+                            height: 25px;
+                            width: 25px;
+                            border-radius: 50%;
+                            text-align: center;
+                            font-size: 12px;
+                            padding-top: 4px;
+                            color: #fff;
+                        }
+                    }
+                    .sub-pro-title {
+                        margin-left: 15px;
+                        h5 {
+                            font-weight: 300;
+                            font-size: 18px;
+                            line-height: 23px;
+                        }
+                        h6 {
+                            margin-top: 15px;
+                            color: #8e8a8a;
+                        }
+                    }
+                }
+                .sub-pro-price {
+                    margin-top: 20px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+            }
+        }
+        .info-discount-code {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #DDDDDD;
+            .info-discount-input {
+                width: 80%;
+            }
+            .info-discount-input-button {
+                .info-button {
+                    width: 93px;
+                    background-color: var(--main-color);
+                    border: unset;
+                }
+            }
+        }
+        .info-provisional-ship {
+            padding: 15px 0px 0px 0px;
+            border-bottom: 1px solid #DDDDDD;
+            .info-provisional {
+                display: flex;
+                justify-content: space-between;
+                h5 {
+                    color: #717171;
+                    font-size: 14px;
+                }
+            }
+            .info-ship {
+                display: flex;
+                justify-content: space-between;
+                h5 {
+                    color: #717171;
+                    font-size: 14px;
+                }
+            }
+        }
+        .info-total-price {
+            margin: 15px 0;
+            .info-total {
+                display: flex;
+                justify-content: space-between;
+                H6 {
+                    font-weight: 550;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+            }
+            .info-price {
+                float: right;
+                button {
+                    width: 93px;
+                    background-color: var(--main-color);
+                    border: unset;
+                }
+            }
+        }
+        .recipe-sort {
+            display: flex;
+            .sort {
+                border-left: 3px solid var(--main-color);
+                .sx {
+                    margin-left: 8px;
+                    font-size: 15px;
+                }
+            }
+            .select {
+                margin-left: 8px;
+            }
+        }
+    }
+    .container__search-products {
+        .container__search-products-detail {
+            .card {
+                .card-img-top {
+                    width: 100%;
+                    height: 208px;
+                }
+                .card-body {
+                    margin-top: 4px;
+                    .card-title {
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-transform: capitalize;
+                    }
+                    .evaluate {
+                        display: flex;
+                        .evaluate-price-new {
+                            font-size: 16px;
+                            color: red;
+                            font-weight: bold;
+                            margin: 2px 5px 2px 0;
+                            font-weight: bold;
+                            line-height: 19px;
+                            text-transform: capitalize;
+                        }
+                        .evaluate-price-old {
+                            font-size: 16px;
+                            color: rgba(0, 0, 0, .54);
+                            margin: 3px 4px 2px 0;
+                            text-decoration: line-through;
+                        }
+                        .evaluate-price-start {
+                            color: #ffce3d;
+                            margin: 3px 4px 2px 0;
+                        }
+                        .evaluate-price-start1 {
+                            margin: 3px 4px 2px 0;
+                        }
+                    }
+                    .card-text {
+                        font-weight: 300;
+                        font-size: 13px;
+                        line-height: 15px;
+                    }
+                    .sale-off {
+                        margin-right: 15px;
+                        width: 30px;
+                        height: 30px;
+                        background-color: var(--background-main-color);
+                        text-align: center;
+                        border-radius: 50%;
+                        position: absolute;
+                        width: 29.96px;
+                        height: 29px;
+                        left: 262px;
+                        top: -11px;
+                        .sale-off-percent {
+                            margin-top: 2px;
+                            font-size: 10px;
+                            font-weight: bold;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*end container*/

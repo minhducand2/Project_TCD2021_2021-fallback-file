@@ -1,0 +1,23 @@
+.img-thumbnail {
+    width: 70px;
+    object-fit: cover;
+}
+.table {
+    text-align: center;
+    tr {
+        td {
+            vertical-align: middle;
+        }
+    }
+    th {
+        vertical-align: middle;
+    }
+}
+.checked {
+    color: orange;
+}
+.star-custom {
+    &:hover {
+        box-shadow: 2px 2px 20px #0000004a;
+    }
+} 

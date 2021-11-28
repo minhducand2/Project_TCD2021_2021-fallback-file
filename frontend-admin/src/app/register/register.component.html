@@ -1,0 +1,125 @@
+<div class="body">
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h3 i18n>Đăng ký</h3>
+
+          <!--icon social-->
+          <div class="d-flex justify-content-end social_icon">
+            <span><i class="fab fa-facebook-square"></i></span>
+            <span><i class="fab fa-google-plus-square"></i></span>
+            <span><i class="fab fa-twitter-square"></i></span>
+          </div>
+        </div>
+
+        <!--start body register-->
+        <div class="card-body">
+          <form role="form" [formGroup]="form">
+            <!--start name-->
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input formControlName="name" [(ngModel)]="input.name" type="text" class="form-control" matInput
+                placeholder="Họ và tên(*)" i18n-placeholder>
+            </div>
+            <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)"
+              class="alert alert-danger form-custom">
+              <div *ngIf="form.controls['name'].errors.required" i18n>
+                Bạn phải nhập trường này
+              </div>
+              <div *ngIf="form.controls['name'].errors.maxlength" i18n>
+                Tên không quá 100 ký tự
+              </div>
+              <div *ngIf="form.controls['name'].errors.minlength" i18n>
+                Bạn phải nhập lớn hơn hoặc bằng 5 ký tự
+              </div>
+            </div>
+            <!--end name-->
+
+            <!--start email-->
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
+              </div>
+              <input formControlName="email" [(ngModel)]="input.email" type="text" class="form-control" matInput
+                placeholder="Nhập email(*)" i18n-placeholder>
+            </div>
+            <div
+              *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)"
+              class="alert alert-danger form-custom">
+              <div *ngIf="form.controls['email'].errors.required" i18n>
+                Bạn phải nhập trường này
+              </div>
+              <div *ngIf="form.controls['email'].errors.maxlength" i18n>
+                Email không quá 50 ký tự
+              </div>
+              <div *ngIf="form.controls['email'].errors.pattern" i18n>
+                Email chưa đúng định dạng
+              </div>
+            </div>
+            <!--end email-->
+
+            <!--start password-->
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input formControlName="password" type="password" id="password" [(ngModel)]="input.password"
+                class="form-control" matInput placeholder="Nhập password(*)" i18n-placeholder />
+            </div>
+            <div
+              *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
+              class="alert alert-danger form-custom">
+              <div *ngIf="form.controls['password'].errors.required" i18n>
+                Bạn phải nhập trường này
+              </div>
+              <div *ngIf="form.controls['password'].errors.maxlength" i18n>
+                Mật khẩu không quá 50 ký tự
+              </div>
+              <div *ngIf="form.controls['password'].errors.minlength" i18n>
+                Bạn phải nhập trên 5 ký tự
+              </div>
+            </div>
+            <!--end password-->
+
+            <!--start rePassword-->
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input formControlName="repassword" type="password" [(ngModel)]="input.repassword" class="form-control"
+                matInput placeholder="Nhập lại password(*)" i18n-placeholder />
+            </div>
+            <div
+              *ngIf="form.controls['repassword'].invalid && (form.controls['repassword'].dirty || form.controls['repassword'].touched)"
+              class="alert alert-danger form-custom">
+              <div *ngIf="form.controls['repassword'].errors.required" i18n>
+                Bạn phải nhập trường này
+              </div>
+              <div *ngIf="form.controls['repassword'].errors.mustMatch" i18n>
+                Mật khẩu không trùng nhau
+              </div>
+            </div>
+            <!--end repassword-->
+
+            <!--model-->
+            <div class="form-group">
+              <!-- <input type="submit" value="Đăng ký" (click)="onBtnRegClick()" class="btn float-right login_btn"> -->
+              <button type="submit" (click)="onBtnRegClick()" class="btn float-right login_btn" i18n>Đăng ký</button>
+            </div>
+          </form>
+        </div>
+        <!--start body register-->
+
+        <!--card footer-->
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Đã có tài khoản?<a routerLink="/" i18n>Đăng nhập</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

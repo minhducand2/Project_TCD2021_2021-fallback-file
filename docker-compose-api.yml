@@ -1,0 +1,12 @@
+version: '3'
+services:
+  
+  web:
+    build: ./backend
+    ports:
+        - "8000:80" 
+    volumes:
+      - container-volume:/home/izicloud4/web-ban-hang
+
+volumes:
+  container-volume:

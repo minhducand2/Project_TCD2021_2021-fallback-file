@@ -1,0 +1,149 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>INFOMATION PROMOTION</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+                <!-- Name field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Name <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Name" formControlName="Name">          
+            <button mat-button *ngIf="input.Name" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Name=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Name'].invalid      
+              && (form.controls['Name'].dirty || form.controls['Name'].touched)"> 
+            <div *ngIf="form.controls['Name'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- PromotionCode field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Promotion Code <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.PromotionCode" formControlName="PromotionCode">          
+            <button mat-button *ngIf="input.PromotionCode" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.PromotionCode=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['PromotionCode'].invalid      
+              && (form.controls['PromotionCode'].dirty || form.controls['PromotionCode'].touched)"> 
+            <div *ngIf="form.controls['PromotionCode'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Percent field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Percent <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.PercentCode" formControlName="Percent">          
+            <button mat-button *ngIf="input.PercentCode" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.PercentCode=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Percent'].invalid      
+              && (form.controls['Percent'].dirty || form.controls['Percent'].touched)"> 
+            <div *ngIf="form.controls['Percent'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- MoneyDiscount field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Money Discount <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.MoneyDiscount" formControlName="MoneyDiscount">          
+            <button mat-button *ngIf="input.MoneyDiscount" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.MoneyDiscount=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['MoneyDiscount'].invalid      
+              && (form.controls['MoneyDiscount'].dirty || form.controls['MoneyDiscount'].touched)"> 
+            <div *ngIf="form.controls['MoneyDiscount'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- StartDate field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width"  >                                   
+            <mat-label i18n>Start Date<span class="text-red">*</span></mat-label>                          
+            <input matInput [(ngModel)]="input.StartDate" formControlName="StartDate" [matDatepicker]="pickerStartDate"> 
+            <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>                  
+            <mat-datepicker touchUi #pickerStartDate></mat-datepicker>                                         
+          </mat-form-field>                                                                               
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['StartDate'].invalid      
+              && (form.controls['StartDate'].dirty || form.controls['StartDate'].touched)"> 
+            <div *ngIf="form.controls['StartDate'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- EndDate field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width"  >                                   
+            <mat-label i18n>End Date<span class="text-red">*</span></mat-label>                          
+            <input matInput [(ngModel)]="input.EndDate" formControlName="EndDate" [matDatepicker]="pickerEndDate"> 
+            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>                  
+            <mat-datepicker touchUi #pickerEndDate></mat-datepicker>                                         
+          </mat-form-field>                                                                               
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['EndDate'].invalid      
+              && (form.controls['EndDate'].dirty || form.controls['EndDate'].touched)"> 
+            <div *ngIf="form.controls['EndDate'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Point field -->                                                           
+        <!-- <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                                     
+            <mat-label i18n>Point <span class="text-red">*</span></mat-label>                               
+            <input matInput type="number" [(ngModel)]="input.Point" formControlName="Point">              
+          </mat-form-field>                                                                               
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Point'].invalid      
+              && (form.controls['Point'].dirty || form.controls['Point'].touched)"> 
+            <div *ngIf="form.controls['Point'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                         -->
+
+   
+
+      </div>
+    </form>
+  </mat-card-content> 
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()" class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card> 

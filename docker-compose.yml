@@ -1,0 +1,43 @@
+version: '3'
+services:
+  angular-ui-admin:
+    build:
+      context: ./frontend-admin
+      dockerfile: Dockerfile-dev
+    ports:
+      - "4000:4000"
+    container_name: angular-ui-admin
+    volumes:
+       - ./frontend-admin:/usr/src/app/frontend-admin
+       - /usr/src/app/frontend-admin/node_modules
+
+  angular-ui-user:
+    build:
+      context: ./frontend-user
+      dockerfile: Dockerfile-dev
+    ports:
+      - "5000:5000"
+    container_name: angular-ui-user
+    volumes:
+       - ./frontend-user:/usr/src/app/frontend-user
+       - /usr/src/app/frontend-user/node_modules 
+       
+  web:
+    build: ./backend
+    ports:
+        - "8000:80"
+    depends_on:
+        - db
+ 
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest" 
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Your_password123"
+    # volumes:
+    #     - container-volume:/var/opt/mssql/data
+    ports:
+        - 1433:1433
+
+volumes:
+  container-volume:

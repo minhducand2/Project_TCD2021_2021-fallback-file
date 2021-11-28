@@ -1,0 +1,62 @@
+<!-- footer -->
+<div class="footer">
+    <!-- Footer -->
+    <div class="container container-footer">
+        <div class="row row-top">
+            <div class="col-12 col-md-3 col-custom" [innerHtml]="dataFooter.Content1">
+            </div>
+
+            <div class="col-12 col-md-3 col-custom" [innerHtml]="dataFooter.Content2">
+            </div>
+            <div class="col-12 col-md-3 col-custom" [innerHtml]="dataFooter.Content3">
+            </div>
+            <div class="col-12 col-md-3 col-custom">
+                <h5>Install App</h5>
+                <div class="install-app-custom">
+                    <a [href]="dataFooter?.IosLink" target="_blank" class="d-block"><img
+                            src="assets/images/footer-googlelay.png" alt="" class="mb-3"></a>
+                    <a [href]="dataFooter?.AndroidLink" target="_blank" class="d-block"><img
+                            src="assets/images/footer-appstore.png" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-bottom">
+            <div class="col-md-6 col-12">
+                &copy; {{newYear}} IZI Software. All rights reserved
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="social_square_icons">
+                    <ul>
+                        <li><a [href]="dataInfoSocial?.Facebook" target="_blank" class="f_facebook gap"><i
+                                    class="fab fa-facebook"></i></a> </li>
+                        <li><a [href]="dataInfoSocial?.Twitter" target="_blank" class="t_twitter gap"><i
+                                    class="fab fa-twitter"></i></a> </li>
+                        <li><a [href]="dataInfoSocial?.Instagram" target="_blank" class="linkedin gap"><i
+                                    class="fab fa-instagram"></i></a> </li>
+                        <li><a [href]="dataInfoSocial?.Youtube" target="_blank" class="g_google gap"><i
+                                    class="fab fa-youtube"></i></a> </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ./Footer -->
+</div>
+<!-- end footer -->
+
+<!-- <div class='quick-call-button'></div>
+<div class='call-now-button'>
+    <div>
+        <p class='call-text' style="background-color:var(--main-color);font-size:19px;"><span style="color:#fff">024
+                7305 8580</span></p>
+        <a href="tel:02473058580" title='Gọi ngay' style="cursor:pointer">
+            <div class='quick-alo-ph-circle active'></div>
+            <div class='quick-alo-ph-circle-fill active'></div>
+            <div class='quick-alo-ph-img-circle shake' style="background-color:var(--main-color);"></div>
+        </a>
+    </div>
+</div> -->

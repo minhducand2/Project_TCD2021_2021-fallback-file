@@ -1,0 +1,93 @@
+<!--start container-->
+<div class="container container-list-menu">
+    <div class="container__search">
+        <div class="container__search-navigate">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item navigate-menu"><a (click)="onClickShop()" style="cursor: pointer;">Shop</a>
+                </li>
+                <li class="breadcrumb-item active"><a>Search</a></li>
+            </ul>
+            <!-- <ul class="breadcrumb mb-5">               
+                <li class="breadcrumb-item active"><a>Thực đơn</a></li>
+            </ul> -->
+        </div>
+
+        <div class="container__search-menu">
+            <div class="row">
+                <div class="col-sm-8 col-4 container__search-menu-recipe">
+                    <div class="title-form">
+                        <div class="title-menu">
+                            <b class="food-menu">Tìm thấy <span>{{count}}</span> kết quả với từ khoá
+                                <span>"{{titleProduct}}"</span></b>
+                            <div class="progress">
+                                <div class="progress-bar" style="width:15%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container__search-products row">
+            <!--block products-->
+            <div class=" col-md-6 col-lg-3 container__search-products-detail" *ngFor="let itemShopMenu of listShopMenu">
+                <div class="card" (click)="onMenuClick(itemShopMenu.id, itemShopMenu.Title)">
+                    <div class="card-img-top">
+                        <img [defaultImage]="defaultImage" [lazyLoad]="itemShopMenu?.Thumbnail" alt="item product">
+                        <div *ngIf="itemShopMenu.saleOf > 0" class="sale-off">
+                            <h6 class="sale-off-percent">{{itemShopMenu.saleOf}}%</h6>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title" (click)="onMenuClick(itemShopMenu.id, itemShopMenu.Title)"
+                            [title]="itemShopMenu.Title">{{itemShopMenu?.titleShort}}</p>
+                        <div class="evaluate d-flex">
+                            <div *ngIf="itemShopMenu.PricePromotion > 0" class="evaluate-price-old">
+                                {{itemShopMenu?.PricePromotion | currency:'VND': true}}</div>
+                            <div class="evaluate-price-new">{{itemShopMenu?.PriceCurrent | currency:'VND': true}}</div>
+
+                        </div>
+
+                        <div class="evaluate-price-start">
+                            <i *ngIf="itemShopMenu?.Star>0" class="fa fa-star" aria-hidden="true"></i>
+                            <i *ngIf="itemShopMenu?.Star>1" class="fa fa-star" aria-hidden="true"></i>
+                            <i *ngIf="itemShopMenu?.Star>2" class="fa fa-star" aria-hidden="true"></i>
+                            <i *ngIf="itemShopMenu?.Star>3" class="fa fa-star" aria-hidden="true"></i>
+                            <i *ngIf="itemShopMenu?.Star>4" class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+
+                        <p class="card-text" [innerHtml]="itemShopMenu?.descShort"></p>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <!--end blok products-->
+        </div>
+    </div>
+
+    <div class="container__pagination">
+        <nav *ngIf="count!=0">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" (click)="onChangeBeforePageClick(this.page)"> <i
+                            class="fa fa-angle-double-left"></i> </a>
+                </li>
+
+                <li *ngIf="this.page > 1" class="page-itemn change-page"><a class="page-link"
+                        (click)="changePage(this.page-1)"><i class="fa fa-angle-left"></i></a></li>
+
+                <li class="page-item" *ngFor="let item of limitPages; let i = index"
+                    [ngClass]="{'active': this.page==(item)}"><a class="page-link"
+                        (click)="changePage(item)">{{item}}</a></li>
+
+                <li *ngIf="numberPages > this.page" class="page-item change-page"><a class="page-link"
+                        (click)="changePage(this.page+1)"><i class="fa fa-angle-right"></i></a></li>
+
+                <li class="page-item">
+                    <a class="page-link" (click)="onChangeAfterPageClick(this.page)"> <i
+                            class="fa fa-angle-double-right"></i> </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--end container-->

@@ -1,0 +1,35 @@
+/* header {
+  background: #22924c;
+}
+header .logo img {
+  height: 30px;
+  object-fit: contain;
+}
+header .nav-custom {
+  min-height: 54px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+header .navbar-light .navbar-nav .nav-link {
+  color: #fff;
+  padding: 15px 10px;
+}
+header .navbar-light .navbar-nav .active > .nav-link {
+  color: #fff;
+  padding: 15px 10px;
+}
+header .navbar-light .navbar-nav .active {
+  background: #007e33;
+} */
+
+/* .header-bot {
+  background-image: url("../img/bg-header-bot.jpg");
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 65%;
+}
+.header-bot .content-header-bot {
+  padding-top: 100px;
+} */
+

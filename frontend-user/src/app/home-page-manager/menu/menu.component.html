@@ -1,0 +1,96 @@
+<!-- Vertical navbar -->
+<div [ngClass]="isShowMenu ? 'active' :'temp'" class="vertical-nav bg-white " id="sidebar">
+    <div class="logo">
+        <a style="cursor: pointer;" routerLink="/">
+            <img style="width: 100%;" [src]="headerInfo?.Logo" alt="Logo" class="image">
+        </a>
+    </div>
+    <div class="py-4 px-3 mb-4 bg-light">
+        <div class="media d-flex align-items-center"><img src="{{userValue?.Avatar}}" alt="{{userValue?.Fullname}}"
+                width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+            <div class="media-body">
+                <h4 class="m-0">{{userValue?.Fullname}}</h4>
+                <p class="font-weight-light text-muted mb-0">Point: <span
+                        style="color:red"><b>{{userValue?.Point}}</b></span></p>
+            </div>
+        </div>
+    </div>
+
+    <p class="text-black font-weight-bold text-uppercase px-3 small pb-4 mb-0">Manager Account</p>
+
+    <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+            <a (click)="onClickOffMenu()" routerLink="/manager/admin/c1-account/Infomation" class="nav-link text-dark ">
+                <i class="fas fa-user-circle mr-3 text-primary fa-fw"></i>
+                Infomation Account
+            </a>
+            <a *ngIf="isShowMenuPassword" (click)="onClickOffMenu()"
+                routerLink="/manager/admin/c1-password/Change-Password" class="nav-link text-dark  bg-light">
+                <i class="fas fa-lock mr-3 text-primary fa-fw"></i>
+                Change Password
+            </a>
+        </li>
+        <!-- <li class="nav-item">
+            <a (click)="onClickOffMenu()" routerLink="/manager/admin/c1-paypal/Paypal" class="nav-link text-dark ">
+                <i class="fab fa-paypal mr-3 text-primary fa-fw"></i>
+                Paypal
+            </a>
+        </li> -->
+
+    </ul>
+
+    <p class="text-black font-weight-bold text-uppercase px-3 small py-4 mb-0">Manager Order</p>
+
+    <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+            <a (click)="onClickOffMenu()" routerLink="/manager/admin/d1-oderplaced/Orders-placed"
+                class="nav-link text-dark ">
+                <i class="fas fa-user-clock mr-3 text-primary fa-fw"></i>
+                Orders placed
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onClickOffMenu()" routerLink="/manager/admin/d1-orderreceived/Order-received"
+                class="nav-link text-dark ">
+                <i class="fas fa-gift mr-3 text-primary fa-fw"></i>
+                Order received
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onClickOffMenu()" routerLink="/manager/admin/d1-odercanceled/Order-refuse"
+                class="nav-link text-dark ">
+                <i class="fas fa-times-circle mr-3 text-primary fa-fw"></i>
+                Order refuse
+            </a>
+        </li>
+    </ul>
+    <p class="text-black font-weight-bold text-uppercase px-3 small py-4 mb-0">Active</p>
+    <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+            <a routerLink="/" style="cursor: pointer;" class="nav-link text-dark ">
+                <i class="fas fa-home mr-3 text-primary fa-fw"></i>
+                Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="logOut()" style="cursor: pointer;" class="nav-link text-dark ">
+                <i class="fas fa-sign-out-alt mr-3 text-primary fa-fw"></i>
+                Logout
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- End vertical navbar -->
+
+
+<!-- Page content holder -->
+<div [ngClass]="isShowMenu ? 'active' :'temp'" class="page-content" id="content">
+    <!-- Toggle button -->
+    <button (click)="isShowMenu=!isShowMenu" id="sidebarCollapse" type="button"
+        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
+            class="text-uppercase font-weight-bold">Menu</small></button>
+
+    <router-outlet></router-outlet>
+
+</div>
+<!-- End demo content -->

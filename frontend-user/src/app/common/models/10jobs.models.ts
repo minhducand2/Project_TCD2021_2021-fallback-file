@@ -1,0 +1,32 @@
+export class Jobs {
+    id?: Number;
+    idcompany?: string;
+    position?: string;
+    amountrecruitment?: string;
+    positionrecruitment?: string;
+    salary?: string;
+    asomission?: string;
+    addresswork?: string;
+    district?: string;
+    career?: string;
+    descriptionwork?: string;
+    benefit?: string;
+    exprience?: string;
+    academiclevel?: string;
+    sex?: string;
+    languagelevel?: string;
+    deadlineapply?: string;
+    requirementwork?: string;
+    requirementdocument?: string;
+    fullname?: string;
+    phone?: string;
+    email?: string;
+    positioncontact?: string;
+    point?: string;
+    startads?: string;
+    endads?: string;
+    numberview?: string; 
+    typeofwork?: string; 
+    status?: string; 
+    postdate?: any; 
+}

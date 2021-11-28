@@ -1,0 +1,349 @@
+<!-- ---------------------------------------- NEW------------------------------ -->
+<div class="app">
+
+
+<!-- begin main -->
+<!-- <router-outlet></router-outlet> -->
+<div class="container mb-4">
+    <div class="container__login">
+        <div class="container__login-text text-center">
+            <h3> Lên kế hoạch bữa ăn đầu tiên của bạn</h3>
+            <H6>
+                Kế hoạch bữa ăn chuyên nghiệp của bạn đã sẵn sàng! Nhấp vào đăng nhập để trải nghiệm cùng chúng tôi nhé
+            </H6>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-login">
+            <button (click)="loginWithFacebook()" class="btn btn-login btn-fb" type="submit"> <img
+                    src="../../assets/images/14.png" class="img-login" alt="icon-login" /> Đăng nhập với
+                Facebook</button>
+
+        </div>
+        <div class="col-md-6 col-login">
+            <button (click)="loginWithGoogle()" class="btn btn-login btn-gg" type="submit"><img
+                    src="../../assets/images/icon-g+.png" class="img-login" alt="icon-login" /> Đăng nhập với
+                Google</button>
+        </div>
+
+        <div class="col-md-6 col-login mt-2">
+            <button (click)="isRegister = true" data-toggle="modal" data-target="#updateInformation"
+                class="btn btn-login btn-gg" type="submit"> <img src="../../assets/images/edit.png" class="img-login"
+                    alt="icon-login" /> Đăng ký tài khoản</button>
+
+        </div>
+        <div class="col-md-6 col-login mt-2">
+            <button data-toggle="modal" data-target="#login" class="btn btn-login btn-fb" type="submit"><img
+                    src="../../assets/images/login.png" class="img-login" alt="icon-login" /> Đăng nhập</button>
+        </div>
+
+    </div>
+</div>
+<!-- end main -->
+
+<!-- start footer -->
+<!-- <app-footer></app-footer> -->
+
+<!-- end footer -->
+</div>
+
+<button type="button" class="btn btn-primary" hidden="true" id="openModal" #updateInformation data-toggle="modal"
+    data-target="#updateInformation">
+    Launch demo modal
+</button>
+
+<button type="button" class="btn btn-primary" hidden="true" #login data-toggle="modal" data-target="#login">
+    Launch demo modal
+</button>
+
+<ng-template #recursiveListTmpl let-list="list" let-parent="parent">
+    <ng-container *ngFor="let item of list">
+        <li class="nav-item dropdown nav-item-dropdown-custom" routerLinkActive="active"
+            (click)="navigatePage(item?.Link)">
+            <a class="nav-link dropdown-toggle itemMenuCustom cursor-pointer" id="navbarDropdownMenuLink" role="button"
+                data-toggle="dropdown">
+                {{item?.Name}}
+            </a>
+            <i class="fas fa-caret-down" *ngIf="item && item['childs'] && item['childs'].length > 0"></i>
+            <!-- *ngIf="itemDataMenuChild.IdParent == itemDataMenuParent.id" -->
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                *ngIf="item['childs'] && item['childs'].length > 0">
+                <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: item['childs'], parent: false }">
+                </ng-container>
+            </div>
+        </li>
+    </ng-container>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="updateInformation" tabindex="-1" role="dialog" aria-labelledby="updateInformation"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 *ngIf="!isRegister" class="modal-title" id="exampleModalLongTitle">CẬP NHẬT THÔNG TIN TÀI KHOẢN</h5>
+                <h5 *ngIf="isRegister" class="modal-title" id="exampleModalLongTitle">ĐĂNG KÝ TÀI KHOẢN</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <article class="card-body">
+                                <span *ngIf="!isRegister" style="color: red">Vui lòng điền đủ thông tin để nhận
+                                    hàng</span>
+                                <span *ngIf="isRegister" style="color: red">Vui lòng điền đầy đủ thông tin để tạo tài
+                                    khoản</span>
+                                <form [formGroup]="form" class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="usr">Họ tên:</label>
+                                            <input formControlName="Name" [(ngModel)]="inputOrderMenu.Fullname"
+                                                type="text" class="form-control">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Name'].invalid && (form.controls['Name'].dirty || form.controls['Name'].touched)">
+                                                <div *ngIf="form.controls['Name'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="usr">Email:</label>
+                                            <input [readonly]="isDisabledEmail"
+                                                (focusout)="onCheckEmail(inputOrderMenu.Email)" formControlName="Email"
+                                                [(ngModel)]="inputOrderMenu.Email" type="text" class="form-control">
+                                            <div *ngIf="isCheckEmail" class="alert alert-danger">
+                                                <span><i class="fas fa-times-circle"></i> Email đã tồn tại</span>
+                                            </div>
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Email'].invalid  && (form.controls['Email'].dirty || form.controls['Email'].touched)">
+                                                <div *ngIf="form.controls['Email'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form.controls['Email'].errors.email" i18n>
+                                                    Vui lòng nhập đúng định dạng email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sel">Tỉnh:</label>
+                                            <select formControlName="City" class="form-control" id="sel"
+                                                [(ngModel)]="inputOrderMenu.IdCity" (change)="getDistrictWithCity(inputOrderMenu.IdCity)">
+                                                <option *ngFor="let item of CityDatas" [value]="item.id">
+                                                    {{item.Name}}</option>
+                                            </select>
+
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['City'].invalid  && (form.controls['City'].dirty || form.controls['City'].touched)">
+                                                <div *ngIf="form.controls['City'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sel1">Quận huyện:</label>
+                                            <select formControlName="District" [(ngModel)]="inputOrderMenu.IdDistrict"
+                                                class="form-control" id="sel1">
+                                                <option *ngFor="let item of DistrictDatas" [value]="item.id">
+                                                    {{item.Name}}
+                                                </option>
+                                            </select>
+                                            <div class="alert alert-danger" *ngIf="form.controls['District'].invalid      
+                                            && (form.controls['District'].dirty || form.controls['District'].touched)">
+                                                <div *ngIf="form.controls['District'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="pwd">Địa chỉ:</label>
+                                            <input formControlName="Address" [(ngModel)]="inputOrderMenu.Address"
+                                                type="text" class="form-control" id="pwd" name="Address">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Address'].invalid  && (form.controls['Address'].dirty || form.controls['Address'].touched)">
+                                                <div *ngIf="form.controls['Address'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="pwd">Số điện thoại:</label>
+                                            <input formControlName="Phone" [(ngModel)]="inputOrderMenu.Phone"
+                                                type="text" class="form-control">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form.controls['Phone'].invalid && (form.controls['Phone'].dirty || form.controls['Phone'].touched)">
+                                                <div *ngIf="form.controls['Phone'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form.controls['Phone'].errors.pattern" i18n>
+                                                    Vui lòng nhập số
+                                                </div>
+                                                <div *ngIf="form.controls['Phone'].errors.minlength" i18n>
+                                                    Số điện thoại tối thiểu 10 ký tự
+                                                </div>
+                                                <div *ngIf="form.controls['Phone'].errors.maxlength" i18n>
+                                                    Số điện thoại tối đa 11 ký tự
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sel1">Giới tính</label>
+                                            <select formControlName="Sex" [(ngModel)]="inputOrderMenu.Sex"
+                                                class="form-control">
+                                                <option value="1"> Nam </option>
+                                                <option value="0"> Nữ </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+
+                                <form [formGroup]="form1">
+                                    <div class="row">
+                                        <div *ngIf="isRegister" class="form-group col-md-6">
+                                            <label>Tạo mật khẩu</label>
+                                            <input [(ngModel)]="inputOrderMenu.Password" formControlName="password"
+                                                type="password" class="form-control" placeholder="Nhập mật khẩu">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form1.controls['password'].invalid  && (form1.controls['password'].dirty || form1.controls['password'].touched)">
+                                                <div *ngIf="form1.controls['password'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form1.controls['password'].errors.minlength" i18n>
+                                                    Mật khẩu ít nhất 6 ký tự
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div *ngIf="isRegister" class="form-group col-md-6">
+                                            <label>Nhập lại mật khẩu</label>
+                                            <input formControlName="repassword" type="password" class="form-control"
+                                                placeholder="Nhập lại mật khẩu">
+                                            <div class="alert alert-danger"
+                                                *ngIf="form1.controls['repassword'].invalid  && (form1.controls['repassword'].dirty || form1.controls['repassword'].touched)">
+                                                <div *ngIf="form1.controls['repassword'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form1.controls['repassword'].errors.mustMatch">
+                                                    Mật mới chưa trùng
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+
+                                        <button *ngIf="!isRegister" data-dismiss="modal" (click)="onBtnSummit()"
+                                            type="submit" class="btn btn-primary btn-block"> CẬP NHẬT </button>
+                                        <button *ngIf="isRegister" data-dismiss="modal" (click)="onBtnSummit()"
+                                            type="submit" class="btn btn-primary btn-block"> ĐĂNG KÝ </button>
+                                        <button *ngIf="isRegister" data-dismiss="modal" type="submit"
+                                            class="btn btn-danger btn-block"> HUỶ </button>
+
+
+                                    </div>
+                                </form>
+                            </article>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title" id="exampleModalLongTitle">ĐĂNG NHẬP TÀI KHOẢN</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <article class="card-body">
+
+                                <form [formGroup]="form2" class="row">
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="usr">Email:</label>
+                                            <input formControlName="Email" [(ngModel)]="inputLogin.Email" type="text"
+                                                class="form-control">
+
+                                            <div class="alert alert-danger"
+                                                *ngIf="form2.controls['Email'].invalid  && (form2.controls['Email'].dirty || form2.controls['Email'].touched)">
+                                                <div *ngIf="form2.controls['Email'].errors.required" i18n>
+                                                    Vui lòng nhập trường này.
+                                                </div>
+                                                <div *ngIf="form2.controls['Email'].errors.email" i18n>
+                                                    Vui lòng nhập đúng định dạng email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Mật khẩu</label>
+                                        <input [(ngModel)]="inputLogin.Password" formControlName="password"
+                                            type="password" class="form-control" placeholder="Nhập mật khẩu">
+                                        <div class="alert alert-danger"
+                                            *ngIf="form2.controls['password'].invalid  && (form2.controls['password'].dirty || form2.controls['password'].touched)">
+                                            <div *ngIf="form2.controls['password'].errors.required" i18n>
+                                                Vui lòng nhập trường này.
+                                            </div>
+                                            <div *ngIf="form2.controls['password'].errors.minlength" i18n>
+                                                Mật khẩu ít nhất 6 ký tự
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+
+                                <div class="col-md-12">
+                                    <button data-dismiss="modal" (click)="btnLogin()" type="submit"
+                                        class="btn btn-primary btn-block"> ĐĂNG NHẬP </button>
+                                    <button data-dismiss="modal" type="submit" class="btn btn-danger btn-block"> HUỶ
+                                    </button>
+
+
+                                </div>
+                            </article>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

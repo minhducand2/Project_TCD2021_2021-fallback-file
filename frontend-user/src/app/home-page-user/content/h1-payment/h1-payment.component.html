@@ -1,0 +1,265 @@
+<!--start container-->
+<div class="container">
+    <div class="container__search">
+        <div class="container__search-navigate">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item navigate-menu"><a style="text-transform: uppercase; cursor: pointer;"
+                        (click)="onClickMenu('0','All')">Shop</a></li>
+                <li class="breadcrumb-item active">Payment</li>
+            </ul>
+        </div>
+        <div class="container__info">
+            <div class="row">
+                <div class="col-sm-6 container__info-recipe">
+                    <div class="" style="border-bottom: 3px solid #f1f1f1;">
+                        <b class="food-menu">THÔNG TIN KHÁCH HÀNG</b>
+                    </div>
+                    <div class="container__info-form">
+                        <form [formGroup]="form" class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="usr">Họ tên:</label>
+                                    <input formControlName="Name" [(ngModel)]="inputOrderMenu.Name" type="text"
+                                        class="form-control" id="usr" name="username">
+                                    <div class="alert alert-danger"
+                                        *ngIf="form.controls['Name'].invalid && (form.controls['Name'].dirty || form.controls['Name'].touched)">
+                                        <div *ngIf="form.controls['Name'].errors.required" i18n>
+                                            Vui lòng nhập trường này.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="usr">Email:</label>
+                                    <input formControlName="Email" [(ngModel)]="inputOrderMenu.Email" type="text"
+                                        class="form-control" id="usr" name="username">
+                                    <div class="alert alert-danger"
+                                        *ngIf="form.controls['Email'].invalid  && (form.controls['Email'].dirty || form.controls['Email'].touched)">
+                                        <div *ngIf="form.controls['Email'].errors.required" i18n>
+                                            Vui lòng nhập trường này.
+                                        </div>
+                                        <div *ngIf="form.controls['Email'].errors.email" i18n>
+                                            Vui lòng nhập đúng định dạng email.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="sel">Tỉnh:</label>
+                                    <select formControlName="City" class="form-control" id="sel"
+                                        [(ngModel)]="inputOrderMenu.IdCity"
+                                        (change)="getDistrictWithCity(inputOrderMenu.IdCity)">
+                                        <option *ngFor="let item of CityDatas" [value]="item.id">
+                                            {{item.Name}}</option>
+                                    </select>
+
+                                    <div class="alert alert-danger"
+                                        *ngIf="form.controls['City'].invalid  && (form.controls['City'].dirty || form.controls['City'].touched)">
+                                        <div *ngIf="form.controls['City'].errors.required" i18n>
+                                            Vui lòng nhập trường này.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="sel1">Quận huyện:</label>
+                                    <select formControlName="District" [(ngModel)]="inputOrderMenu.IdDistrict"
+                                        class="form-control" id="sel1">
+                                        <option *ngFor="let item of DistrictDatas" [value]="item.id">{{item.Name}}
+                                        </option>
+                                    </select>
+                                    <div class="alert alert-danger" *ngIf="form.controls['District'].invalid      
+                                    && (form.controls['District'].dirty || form.controls['District'].touched)">
+                                        <div *ngIf="form.controls['District'].errors.required" i18n>
+                                            Vui lòng nhập trường này.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pwd">Số điện thoại:</label>
+                                    <input formControlName="Phone" [(ngModel)]="inputOrderMenu.Phone" type="text"
+                                        class="form-control" id="pwd" name="password">
+                                    <div class="alert alert-danger"
+                                        *ngIf="form.controls['Phone'].invalid && (form.controls['Phone'].dirty || form.controls['Phone'].touched)">
+                                        <div *ngIf="form.controls['Phone'].errors.required" i18n>
+                                            Vui lòng nhập trường này.
+                                        </div>
+                                        <div *ngIf="form.controls['Phone'].errors.pattern" i18n>
+                                            Vui lòng nhập số
+                                        </div>
+                                        <div *ngIf="form.controls['Phone'].errors.minlength" i18n>
+                                            Số điện thoại tối thiểu 10 ký tự
+                                        </div>
+                                        <div *ngIf="form.controls['Phone'].errors.maxlength" i18n>
+                                            Số điện thoại tối đa 11 ký tự
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pwd">Địa chỉ:</label>
+                                    <input formControlName="Address" [(ngModel)]="inputOrderMenu.Address" type="text"
+                                        class="form-control" id="pwd" name="Address">
+                                    <div class="alert alert-danger"
+                                        *ngIf="form.controls['Address'].invalid  && (form.controls['Address'].dirty || form.controls['Address'].touched)">
+                                        <div *ngIf="form.controls['Address'].errors.required" i18n>
+                                            Vui lòng nhập trường này.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ////// -->
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="comment">Ghi chú:</label>
+                                    <textarea formControlName="Note" [(ngModel)]="inputOrderMenu.Note"
+                                        class="form-control" rows="5" id="comment"></textarea>
+                                    <div class="alert alert-danger" *ngIf="form.controls['Note'].invalid      
+                                        && (form.controls['Note'].dirty || form.controls['Note'].touched)">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="row">
+                            <div class="col-md-12 pay-method">
+                                <h6 class="pay-method-title">Phương thức thanh toán</h6>
+                                <div class="radio-button">
+                                    <label class="form-check-label">
+                                        <input [(ngModel)]="isPay" value='1' type="radio"
+                                            class="form-check-input radio-input" name="optradio"> Tiền mặt
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <label class="form-check-label">
+                                        <input [(ngModel)]="isPay" value='3' type="radio"
+                                            class="form-check-input radio-input" name="optradio1"> Paypal
+                                    </label>
+                                    <div *ngIf="isPay == '3'" class="mt-2">
+                                        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                                    </div>
+                                </div>
+                                <div class="form-group radio-button">
+                                    <label class="form-check-label">
+                                        <input [(ngModel)]="isPay" value='2' type="radio"
+                                            class="form-check-input radio-input" name="optradio2"> Chuyển khoản
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <label class="form-check-label">
+                                        <input (change)="onClickUserPoint()" 
+                                            [(ngModel)]="isUserPoint" type="checkbox" id="defaultCheck1"
+                                            class="form-check-input radio-input" checked>
+                                        Sử dụng điểm tích luỹ <span *ngIf="showPoint>0">({{showPoint}} điểm)</span>
+                                    </label>
+                                </div>
+                                <div class="content-pay-method">
+                                    <h5 class="info-acc">THÔNG TIN TÀI KHOẢN</h5>
+                                    <H5>
+                                        CHỦ TÀI KHOẢN: CTY TNHH ROLIE VIET NAM
+                                    </H5>
+                                    <H6>1. BIDV:12010007159253 - Ngân hàng TMCP ĐT & PT Việt Nam- Chi nhánh sở giao dịch
+                                        1</H6>
+                                    <p><b>NỘI DUNG CHUYỂN KHOẢN:</b> DH#{{idOrderMenu}} -
+                                        {{inputOrderMenu.Phone}} - {{totalMoney}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 container__info-recipe">
+                    <div class="" style="border-bottom: 3px solid #f1f1f1;">
+                        <b class="food-menu">THÔNG TIN ĐƠN HÀNG DH#{{idOrderMenu}}</b>
+                    </div>
+                    <div class="info-order">
+                        <div class="sub-title">
+                            <h5>SẢN PHẨM</h5>
+                            <h5>TỔNG</h5>
+                        </div>
+                    </div>
+                    <div class="info-order">
+                        <div *ngFor="let item of dataOderMenu" class="sub-pro">
+                            <div class="sub-pro-left">
+                                <div class="sub-pro-img">
+                                    <img [src]="getDisplayShopmenuThumbnailById(item?.IdShop)">
+
+                                    <div class="position-title">
+                                        {{item?.Amount}}
+                                    </div>
+                                </div>
+                                <div class="sub-pro-title">
+                                    <h5>{{getDisplayShopmenuById(item?.IdShop)}}
+                                    </h5>
+
+                                </div>
+                            </div>
+                            <div class="sub-pro-price">
+                                <h5>
+                                    {{getPriceProduct(item.PriceShopMenu, item.Amount)| currency: "VND":true}}
+                                </h5>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-discount-code">
+                        <div class="form-group info-discount-input">
+                            <input [(ngModel)]="promotionCode" type="text" class="form-control" id="usr"
+                                placeholder="Nhập mã giảm giá">
+                        </div>
+                        <div class="info-discount-input-button">
+                            <button (click)="onBntCodeClick()" type="submit" class="btn btn-primary info-button">Sử
+                                Dụng</button>
+                        </div>
+                    </div>
+
+                    <div class="info-provisional-ship">
+                        <div class="info-provisional">
+                            <h5>Tạm Tính</h5>
+                            <h5>{{inputOrderMenu.TotalPrice | currency: "VND":true}}</h5>
+                        </div>
+                        <div class="info-ship">
+                            <h5>Giảm giá</h5>
+                            <h6 *ngIf="this.Promotion.PercentCode != '0'">{{promotionPercent}} %</h6>
+                            <h6 *ngIf="this.Promotion.PercentCode == '0'">{{promotionMoney | currency: "VND":true}}
+                            </h6>
+                        </div>
+                        <div class="info-ship">
+                            <h5>Phí Ship</h5>
+                            <h6>{{costShip | currency: "VND":true}}</h6>
+                        </div>
+                        <div class="info-ship">
+                            <h5>Điểm tích luỹ</h5>
+                            <h6>{{pointAddUser}} điểm</h6>
+                        </div>
+                    </div>
+
+                    <div class="info-total-price">
+                        <div class="info-total">
+                            <h6>TỔNG ĐƠN HÀNG</h6>
+                            <h6>{{totalMoney | currency: "VND":true}}</h6>
+                        </div>
+                        <div class="info-price">
+                            <button (click)="onBntSummitClick()" type="submit" class="btn btn-primary">Đặt Hàng</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--end container-->

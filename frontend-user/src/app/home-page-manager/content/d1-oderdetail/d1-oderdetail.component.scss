@@ -1,0 +1,46 @@
+.table{
+  text-align: center;
+  .tab-img{
+    width: 150px;
+    text-align: center;
+    .img-news{
+      width: 100px;
+      height: 100px;
+      margin-top: 10px;
+    }
+  }
+  .oder{
+    width: 400px;
+    text-align: left;
+    .news{
+      width: 400px;
+      height: 120px;
+      .news-content{
+        margin-left: 15px;
+        margin-top: 10px;
+      }
+      .news-content .title{
+        text-decoration: none;
+        color: black;
+      }
+      .news-content .title:hover{
+        color: var(--main-color);
+      }
+    }
+  }
+  .id{
+    line-height: 100px;
+  }
+  .price{
+    color: var(--main-color);
+    line-height: 100px;
+  }
+  .soluong{
+    line-height: 100px;
+  }
+
+}
+
+.btn{
+  float: right;
+}

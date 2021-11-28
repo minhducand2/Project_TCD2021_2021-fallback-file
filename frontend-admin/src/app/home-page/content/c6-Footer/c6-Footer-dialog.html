@@ -1,0 +1,107 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>Insert Footer</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+                <!-- Content1 field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-label i18n>Content1<span class="text-red">*</span></mat-label>                             
+          <ckeditor [(ngModel)]="input.Content1" formControlName="Content1" [config]="{uiColor: '#16c1c3'}" 
+            debounce="500">                                                            
+          </ckeditor>                                                                                     
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Content1'].invalid      
+              && (form.controls['Content1'].dirty || form.controls['Content1'].touched)"> 
+            <div *ngIf="form.controls['Content1'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Content2 field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-label i18n>Content2<span class="text-red">*</span></mat-label>                             
+          <ckeditor [(ngModel)]="input.Content2" formControlName="Content2" [config]="{uiColor: '#16c1c3'}" 
+            debounce="500">                                                            
+          </ckeditor>                                                                                     
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Content2'].invalid      
+              && (form.controls['Content2'].dirty || form.controls['Content2'].touched)"> 
+            <div *ngIf="form.controls['Content2'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Content3 field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-label i18n>Content3<span class="text-red">*</span></mat-label>                             
+          <ckeditor [(ngModel)]="input.Content3" formControlName="Content3" [config]="{uiColor: '#16c1c3'}" 
+            debounce="500">                                                            
+          </ckeditor>                                                                                     
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Content3'].invalid      
+              && (form.controls['Content3'].dirty || form.controls['Content3'].touched)"> 
+            <div *ngIf="form.controls['Content3'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- AndroidLink field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>AndroidLink <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.AndroidLink" formControlName="AndroidLink">          
+            <button mat-button *ngIf="input.AndroidLink" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.AndroidLink=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['AndroidLink'].invalid      
+              && (form.controls['AndroidLink'].dirty || form.controls['AndroidLink'].touched)"> 
+            <div *ngIf="form.controls['AndroidLink'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- IosLink field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>IosLink <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.IosLink" formControlName="IosLink">          
+            <button mat-button *ngIf="input.IosLink" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.IosLink=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['IosLink'].invalid      
+              && (form.controls['IosLink'].dirty || form.controls['IosLink'].touched)"> 
+            <div *ngIf="form.controls['IosLink'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+   
+
+      </div>
+    </form>
+  </mat-card-content> 
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()" class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card> 

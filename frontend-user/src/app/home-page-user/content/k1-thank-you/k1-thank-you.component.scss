@@ -1,0 +1,28 @@
+.wrapper {
+    background-image: url('../../../../assets//images/bg-thank.jpg');
+    text-align: center;
+    .bg-opacity {
+        background-color: #00000066;
+        padding: 100px 0px 50px;
+    }
+    h1 {
+        color: #fff;
+        margin-top: 20px;
+    }
+    p {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .btn-home {
+        margin-top: 50px;
+        a {
+            background: var(--main-color);
+            color: #fff;
+            padding: 15px 25px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}

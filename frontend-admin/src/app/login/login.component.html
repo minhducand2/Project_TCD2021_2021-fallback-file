@@ -1,0 +1,56 @@
+<div class="bg-img">
+  <div class="row">
+    <div class="content col-md-12">
+      <header i18n>Đăng Nhập</header>
+
+      <!--start form login-->
+      <form action="#">
+        <!--input email-->
+        <div class="field">
+          <span class="fa fa-user"></span>
+          <input maxlength="50" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.email" type="text"
+            class="form-control" placeholder="Email" i18n-placeholder>
+        </div>
+
+        <!--input password-->
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input maxlength="50" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.password" type="password"
+            class="form-control" placeholder="Mật khẩu" i18n-placeholder>
+        </div>
+
+        <!--forgot password-->
+        <div class="pass">
+          <a i18n>QUÊN MẬT KHẨU?</a>
+        </div>
+
+        <!--submit login-->
+        <div class="field">
+          <!-- <input (click)="onBtnLoginClick()" type="submit" value="Đăng nhập" class="btn float-right login_btn" i18n> -->
+          <button (click)="onBtnLoginClick()" type="submit" class="btn float-right login_btn btn-login" i18n>Đăng
+            nhập</button>
+        </div>
+      </form>
+      <!--end form login-->
+
+
+      <!--start social-->
+      <div class="login" i18n>
+        Hoặc đăng nhập với</div>
+      <div class="links">
+        <div class="facebook">
+          <i class="fa fa-facebook-f"><span>Facebook</span></i>
+        </div>
+        <div class="instagram">
+          <i class="fa fa-instagram"><span>Instagram</span></i>
+        </div>
+      </div>
+      <div class="signup">
+        Bạn chưa có tài khoản?
+        <a routerLink="/register" i18n>Đăng ký ngay</a>
+      </div>
+      <!--end social-->
+
+    </div>
+  </div>
+</div>

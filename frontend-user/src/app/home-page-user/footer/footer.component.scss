@@ -1,0 +1,160 @@
+//start footer
+.footer {
+    background-color: var(--main-color);
+    color: white;
+    .container-footer {
+        .row-top {
+            padding: 70px 0px;
+            padding-bottom: 20px;
+            .col-custom {
+                pre {
+                    img {
+                        width: 100%;
+                    }
+                }
+                h5 {
+                    font-size: 20px;
+                    font-weight: 400;
+                }
+                ul {
+                    margin-top: 25px;
+                    li {
+                        a {
+                            color: white;
+                            font-size: 14px;
+                            font-weight: 300;
+                            text-decoration: none;
+                        }
+                    }
+                }
+                .install-app-custom {
+                    margin-top: 25px;
+                    img {
+                        width: 70%;
+                    }
+                }
+            }
+        }
+        .row-bottom {
+            background: var(--main-color);
+            padding: 5px 0px;
+            .col-custom-left {
+                font-size: 14px;
+                font-weight: 300;
+            }
+            .col-custom-right {
+                ul {
+                    li {
+                        display: inline;
+                        padding: 0px 20px;
+                        a {
+                            i {
+                                color: white;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                    @media only screen and (max-width: 576px) {
+                        li {
+                            padding: 0px 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.col-custom:nth-child(2),
+.col-custom:nth-child(3) {
+    @media (max-width: 576px) {
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+.col-custom:nth-child(1) {
+    @media (max-width: 576px) {
+        text-align: center;
+    }
+}
+.social_square_icons ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    // margin-left: 450px;
+    // margin-top: 300px
+}
+
+.social_square_icons ul li:first-child {
+    margin-left: 0px
+}
+
+.social_square_icons ul li a {
+    float: left;
+    line-height: 40px;
+    color: #e0e0e0;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    margin-bottom: 0px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    // background: var(--second-color);
+}
+
+.gap {
+    margin-right: 10px
+}
+
+.social_icons_rounded ul li a i {
+    font-size: 16px
+}
+
+.f_facebook:hover {
+    color: #fff;
+    background: #2a66b3;
+    border: 1px solid #2a66b3
+}
+
+.t_twitter:hover {
+    color: #fff;
+    background: #35bbec;
+    border: 1px solid #35bbec
+}
+
+.pinterest:hover {
+    color: #fff;
+    background: #cb2027;
+    border: 1px solid #cb2027
+}
+
+.linkedin:hover {
+    color: #fff;
+    background: #007bb5;
+    border: 1px solid #007bb5
+}
+
+.g_google:hover {
+    color: #fff;
+    background: #e55644;
+    border: 1px solid #e55644
+}
+
+.dribbble:hover {
+    color: #fff;
+    background: #ea4c89;
+    border: 1px solid #ea4c89
+}
+
+.skype:hover {
+    color: #fff;
+    background: #01aaf8;
+    border: 1px solid #01aaf8
+}
+
+.flickr:hover {
+    color: #fff;
+    background: #ff0084;
+    border: 1px solid #ff0084
+}
+// end footer

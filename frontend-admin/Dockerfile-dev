@@ -1,0 +1,16 @@
+FROM node:12.18.1
+
+WORKDIR /usr/src/app/frontend-admin
+
+COPY package*.json ./
+
+RUN npm uninstall -g angular-cli
+RUN npm cache clear --force
+RUN npm install -g @angular/cli@latest
+RUN npm install --save-dev @angular-devkit/build-angular  
+RUN npm install
+
+
+EXPOSE 4000
+
+CMD ["npm", "start"]

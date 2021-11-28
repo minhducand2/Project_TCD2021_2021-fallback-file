@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="0076559ab9c14b139a4155d5c3b40a760a5c601f" datatype="html">
+        <source>Quản Lý Lớp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d128c38927e10243fb5431046b2cc048487416c2" datatype="html">
+        <source>Tên Người Dùng</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cd16422c0375e9b9820fc31dc97bef148e443e6e" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>Lọc</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8006ea73d8a1c68f4c8ba6c15e215f53f3fc16b2" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Thêm
+                mới</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a2ea540c7a4286563cfc42db3f82b833dc16b013" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Duyệt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20371277706eedf7fd8a3f51633ca5d801cd4fc2" datatype="html">
+        <source> Name </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e9ded9ddc67d3d863a5484c81550ee0de9b0ff04" datatype="html">
+        <source> Address </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="359269aaaf93306c7ffd86e31d782b8734dea53c" datatype="html">
+        <source> Createdate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72ce2cc4250d089a8a7037ede11d7e40570de8e8" datatype="html">
+        <source> Amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="27cfa688d8217afb612958980be98831f9b9722d" datatype="html">
+        <source> Price</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d29113d3f686352763a88a9164e93c75678d37a9" datatype="html">
+        <source>Sửa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fec10ec1911920fbe7e7d259cf7b1289396ba862" datatype="html">
+        <source>Thông tin lớp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop-dialog.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="389365672f12d1c23be7939153a04bf0638fa72a" datatype="html">
+        <source>Xóa
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop-dialog.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="47e2f8db0c38646c480580fd5b6644d9a5f384cf" datatype="html">
+        <source>Đồng
+      ý</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop-dialog.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="51c2ceebaae8dcc3dd66b2923756ab40428fff38" datatype="html">
+        <source>Đóng</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-page/content/a1lop/a1lop-dialog.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  
+  angular-ui-admin:
+    build:
+      context: ./frontend-admin
+      dockerfile: Dockerfile-dev
+    ports:
+      - "4000:4000"
+    container_name: angular-ui-admin
+    volumes:
+       - ./frontend-admin:/usr/src/app/frontend-admin
+       - /usr/src/app/frontend-admin/node_modules
+
+volumes:
+  container-volume:

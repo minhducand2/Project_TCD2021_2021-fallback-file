@@ -1,0 +1,191 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>INFOMATION CONTACTINFO</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12 col-12">
+      <div class="row custom-overflow">
+
+                <!-- Address field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Address <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Address" formControlName="Address">          
+            <button mat-button *ngIf="input.Address" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Address=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Address'].invalid      
+              && (form.controls['Address'].dirty || form.controls['Address'].touched)"> 
+            <div *ngIf="form.controls['Address'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Phone field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Phone <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Phone" formControlName="Phone">          
+            <button mat-button *ngIf="input.Phone" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Phone=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Phone'].invalid      
+              && (form.controls['Phone'].dirty || form.controls['Phone'].touched)"> 
+            <div *ngIf="form.controls['Phone'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Mail field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Mail <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Mail" formControlName="Mail">          
+            <button mat-button *ngIf="input.Mail" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Mail=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Mail'].invalid      
+              && (form.controls['Mail'].dirty || form.controls['Mail'].touched)"> 
+            <div *ngIf="form.controls['Mail'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Working field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Working <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Working" formControlName="Working">          
+            <button mat-button *ngIf="input.Working" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Working=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Working'].invalid      
+              && (form.controls['Working'].dirty || form.controls['Working'].touched)"> 
+            <div *ngIf="form.controls['Working'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Facebook field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Facebook <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Facebook" formControlName="Facebook">          
+            <button mat-button *ngIf="input.Facebook" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Facebook=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Facebook'].invalid      
+              && (form.controls['Facebook'].dirty || form.controls['Facebook'].touched)"> 
+            <div *ngIf="form.controls['Facebook'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Instagram field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Instagram <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Instagram" formControlName="Instagram">          
+            <button mat-button *ngIf="input.Instagram" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Instagram=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Instagram'].invalid      
+              && (form.controls['Instagram'].dirty || form.controls['Instagram'].touched)"> 
+            <div *ngIf="form.controls['Instagram'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Youtube field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Youtube <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Youtube" formControlName="Youtube">          
+            <button mat-button *ngIf="input.Youtube" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Youtube=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Youtube'].invalid      
+              && (form.controls['Youtube'].dirty || form.controls['Youtube'].touched)"> 
+            <div *ngIf="form.controls['Youtube'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Twitter field -->                                                           
+        <div class="col-md-6 col-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Twitter <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Twitter" formControlName="Twitter">          
+            <button mat-button *ngIf="input.Twitter" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Twitter=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Twitter'].invalid      
+              && (form.controls['Twitter'].dirty || form.controls['Twitter'].touched)"> 
+            <div *ngIf="form.controls['Twitter'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Map field -->                                                           
+        <div class="col-md-12 col-12">                                                       
+          <mat-label i18n>Map<span class="text-red">*</span></mat-label>                             
+          <ckeditor [(ngModel)]="input.Map" formControlName="Map" [config]="{uiColor: '#16c1c3'}" 
+            debounce="500">                                                            
+          </ckeditor>                                                                                     
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Map'].invalid      
+              && (form.controls['Map'].dirty || form.controls['Map'].touched)"> 
+            <div *ngIf="form.controls['Map'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+   
+
+      </div>
+    </form>
+  </mat-card-content> 
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()" class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card> 

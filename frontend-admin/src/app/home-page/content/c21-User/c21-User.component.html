@@ -1,0 +1,181 @@
+<mat-card class="title-block">
+  <div class="row">
+    <div class="col-md-12 title-main">
+      <p i18n>Manager User</p>
+    </div>
+  </div>
+</mat-card>
+
+<!-- select-top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <div class="col-md-9 col-xs-12">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Fill keywords you are looking for.."
+          i18n-placeholder>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <div class="example-button-row contain-button-filter">
+        <button type="button" class="border-0 btn btn-success btn-filter w-120" i18n><i class="fa fa-filter"></i>Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- filter -top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <!-- select User Status filter -->                     
+    <div class="col-md-3 col-xs-12">                                   
+      <mat-form-field  >                               
+        <mat-label i18n>SEARCH User Status</mat-label>        
+        <mat-select [(ngModel)]="IdUserStatusModel" (selectionChange)="onUserStatusSelectionChange($event)">  
+          <mat-option *ngFor="let item of UserStatusDatas" [value]="item.id"> 
+            {{item.Name}}                                              
+          </mat-option>                                                
+        </mat-select>                                                  
+      </mat-form-field>                                                
+    </div>                                                             
+
+    <!-- select Role User filter -->                     
+    <div class="col-md-3 col-xs-12">                                   
+      <mat-form-field  >                               
+        <mat-label i18n>SEARCH Role User</mat-label>        
+        <mat-select [(ngModel)]="IdRoleUserModel" (selectionChange)="onRoleUserSelectionChange($event)">  
+          <mat-option *ngFor="let item of RoleUserDatas" [value]="item.id"> 
+            {{item.Name}}                                              
+          </mat-option>                                                
+        </mat-select>                                                  
+      </mat-form-field>                                                
+    </div>                                                             
+
+
+  
+  </div>
+  <div class="row">
+  </div>
+</mat-card>
+<!--  end filter-top -->  
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+  <div class="row">
+    <div class="col-md-12" *ngIf="isPermissionMenu1">
+      <button type="button" class="btn btn-success mr-3 btn-add w-120" (click)="onBtnInsertDataClick()" i18n><i
+          class="fa fa-plus"></i> Add new </button>
+      <button type="button" class="btn btn-success mr-3 btn-add-mobile w-120" (click)="onBtnInsertDataClick()" i18n><i
+          class="fa fa-plus"></i> Add </button>
+      <!-- <button type="button" class="btn btn-primary d-inline-block mr-3 btn-accept w-120" i18n><i
+          class="fa fa-check"></i>
+        Duyệt</button> -->
+      <button type="button" class="btn btn-danger btn-del w-120" data-toggle="modal" data-target="#exampleModal" i18n><i 
+          class="mdi mdi-delete"></i>Delete</button>                                                                        
+
+    </div>
+  </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 wp-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 grid-data-custom">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="check-custom">
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- id Column -->                                                    
+    <ng-container matColumnDef="id">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> id </th> 
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>                
+    </ng-container>                                                         
+
+    <!-- IdUserStatus Column -->                                                    
+    <ng-container matColumnDef="IdUserStatus">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> User Status </th> 
+      <td mat-cell *matCellDef="let row"> {{getDisplayUserstatusById(row.IdUserStatus)}} </td>
+    </ng-container>                                                         
+
+    <!-- Fullname Column -->                                                    
+    <ng-container matColumnDef="Fullname">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Fullname </th> 
+      <td mat-cell *matCellDef="let row"> {{row.Fullname}} </td>                
+    </ng-container>                                                         
+
+    <!-- Email Column -->                                                    
+    <ng-container matColumnDef="Email">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Email </th> 
+      <td mat-cell *matCellDef="let row"> {{row.Email}} </td>                
+    </ng-container>                                                         
+
+    <!-- Avatar Column -->                                                    
+    <ng-container matColumnDef="Avatar">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Avatar </th> 
+      <td mat-cell *matCellDef="let row"> <img [src]="row.Avatar" style="width: 200px; height: 80px; margin: 5px; object-fit: cover;"> </td>                
+    </ng-container>                                                         
+
+    <!-- IdRoleUser Column -->                                                    
+    <ng-container matColumnDef="IdRoleUser">                                      
+      <th mat-header-cell *matHeaderCellDef   i18n> Role User </th> 
+      <td mat-cell *matCellDef="let row"> {{getDisplayRoleuserById(row.IdRoleUser)}} </td>
+    </ng-container>    
+    
+      <!-- IdRoleUser Column -->                                                    
+      <ng-container matColumnDef="Point">                                      
+        <th mat-header-cell *matHeaderCellDef   i18n> Point </th> 
+        <td mat-cell *matCellDef="let row"> {{row.Point}} </td>
+      </ng-container> 
+
+
+    <!-- update -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef i18n style="text-transform:uppercase">Edit</th>
+      <td mat-cell *matCellDef="let row">
+        <i style="cursor: pointer;" *ngIf="isPermissionMenu1" (click)="onBtnUpdateDataClick(row)"
+          class="icon-note icon-update" title="Edit"></i>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+</div>
+<!-- pagination -->
+<mat-paginator [pageIndex]="pageIndex" [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+
+
+<!-- Accuracy delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span style="color:red" i18n>Confirm dialog</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" i18n>
+        Do you really want to delete these records? This process cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" i18n>Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="onBtnDelClick()" data-dismiss="modal" i18n>Accept</button>
+      </div>
+    </div>
+  </div>
+</div>

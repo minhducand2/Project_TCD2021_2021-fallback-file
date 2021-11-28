@@ -1,0 +1,36 @@
+export class Company {
+    id?: Number;
+    email?: string;
+    password?: string;
+    avatar?: string;
+    fullname?: string;
+    phone?: string;
+    companyname?: string;
+    companyphone?: string;
+    personalscale?: string;
+    address?: string;
+    city?: string;
+    district?:string;
+    point?: any;
+    website?: string;
+    career?: string;
+    about?: string;
+    employees?:string;
+    offices?:string;
+    logo?: string;
+    bussinesslicence?: string;
+    position?: string;
+    personalemail?: string; 
+    startads?: string;
+    endads?: string;
+    banner?: string;
+    pointbanner?: string;
+    startadsbanner?: string;
+    endadsbanner?: string;
+    status?: string;
+    statusbanner?: string;
+    pointcompany?: string;
+    role?: string;
+    slogan?: string;
+    background?: string;
+}

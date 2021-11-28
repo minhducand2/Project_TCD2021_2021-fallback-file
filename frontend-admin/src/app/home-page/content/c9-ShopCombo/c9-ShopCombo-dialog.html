@@ -1,0 +1,62 @@
+<mat-card class="dialog-box-shadow">
+  <div class="title-dialog text-center system-custom" role="alert">
+    <h5 class="text-uppercase font-weight-bolder" i18n>INFOMATION SHOPCOMBO</h5>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" class="col-md-12">
+      <div class="row custom-overflow">
+
+                <!-- Name field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Usd <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Usd" formControlName="Usd">          
+            <button mat-button *ngIf="input.Usd" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Usd=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Usd'].invalid      
+              && (form.controls['Usd'].dirty || form.controls['Usd'].touched)"> 
+            <div *ngIf="form.controls['Usd'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+        <!-- Price field -->                                                           
+        <div class="col-md-12">                                                       
+          <mat-form-field class="example-full-width">                                 
+            <mat-label i18n>Ship <span class="text-red">*</span></mat-label>           
+            <input matInput [(ngModel)]="input.Ship" formControlName="Ship">          
+            <button mat-button *ngIf="input.Ship" matSuffix mat-icon-button           
+             aria-label="Clear" (click)="input.Ship=''">                            
+              <mat-icon>close</mat-icon>                                              
+            </button>                                                                 
+          </mat-form-field>                                                           
+                                                                                      
+          <div class="alert alert-danger" *ngIf="form.controls['Ship'].invalid      
+              && (form.controls['Ship'].dirty || form.controls['Ship'].touched)"> 
+            <div *ngIf="form.controls['Ship'].errors.required" i18n>                
+              Please enter this field.                                               
+            </div>                                                                    
+          </div>                                                                      
+        </div>                                                                        
+
+   
+
+      </div>
+    </form>
+  </mat-card-content> 
+
+  <!--Modal -->
+  <div class="text-center" style="margin-top: 10px;">
+    <button type="button" [disabled]="!form.valid || isUpdate" cdkFocusInitial (click)="onBtnSubmitClick()" class="btn btn-success btn-fw mr-3 custom-button" i18n>
+      <i class="fa fa-check"></i>
+      Accept</button>
+    <button class="btn btn-warning custom-margin-button custom-button" [mat-dialog-close]="data.animal" i18n> <i
+        class="fa fa-times"></i> Close</button>
+  </div>
+
+</mat-card> 

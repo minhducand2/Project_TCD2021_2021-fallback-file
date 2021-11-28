@@ -1,0 +1,495 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,400italic,500italic,700,700italic,300,300italic&display=swap&subset=vietnamese);
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --main-color: #39C0ED;
+    --second-color: #14a2d2;
+    --text-opacity: #787885;
+    --box-showdown: 0 1px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --box-showdown-hover: 0 3px 6px -4px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    --loading-icon: url(assets/icons/loading.svg);
+    --treeitem-expanded-icon: url(assets/icons/treeitem-expanded.svg);
+    --treeitem-collapsed-icon: url(assets/icons/treeitem-collapsed.svg);
+    --toolbarButton-menuArrow-icon: url(assets/icons/toolbarButton-menuArrow.svg);
+    --toolbarButton-sidebarToggle-icon: url(assets/icons/toolbarButton-sidebarToggle.svg);
+    --toolbarButton-secondaryToolbarToggle-icon: url(assets/icons/toolbarButton-secondaryToolbarToggle.svg);
+    --toolbarButton-pageUp-icon: url(assets/icons/toolbarButton-pageUp.svg);
+    --toolbarButton-pageDown-icon: url(assets/icons/toolbarButton-pageDown.svg);
+    --toolbarButton-zoomOut-icon: url(assets/icons/toolbarButton-zoomOut.svg);
+    --toolbarButton-zoomIn-icon: url(assets/icons/toolbarButton-zoomIn.svg);
+    --toolbarButton-presentationMode-icon: url(assets/icons/toolbarButton-presentationMode.svg);
+    --toolbarButton-print-icon: url(assets/icons/toolbarButton-print.svg);
+    --toolbarButton-openFile-icon: url(assets/icons/toolbarButton-openFile.svg);
+    --toolbarButton-download-icon: url(assets/icons/toolbarButton-download.svg);
+    --toolbarButton-bookmark-icon: url(assets/icons/toolbarButton-bookmark.svg);
+    --toolbarButton-viewThumbnail-icon: url(assets/icons/toolbarButton-viewThumbnail.svg);
+    --toolbarButton-viewOutline-icon: url(assets/icons/toolbarButton-viewOutline.svg);
+    --toolbarButton-viewAttachments-icon: url(assets/icons/toolbarButton-viewAttachments.svg);
+    --toolbarButton-viewLayers-icon: url(assets/icons/toolbarButton-viewLayers.svg);
+    --toolbarButton-currentOutlineItem-icon: url(assets/icons/toolbarButton-currentOutlineItem.svg);
+    --toolbarButton-search-icon: url(assets/icons/toolbarButton-search.svg);
+    --findbarButton-previous-icon: url(assets/icons/findbarButton-previous.svg);
+    --findbarButton-next-icon: url(assets/icons/findbarButton-next.svg);
+    --secondaryToolbarButton-firstPage-icon: url(assets/icons/secondaryToolbarButton-firstPage.svg);
+    --secondaryToolbarButton-lastPage-icon: url(assets/icons/secondaryToolbarButton-lastPage.svg);
+    --secondaryToolbarButton-rotateCcw-icon: url(assets/icons/secondaryToolbarButton-rotateCcw.svg);
+    --secondaryToolbarButton-rotateCw-icon: url(assets/icons/secondaryToolbarButton-rotateCw.svg);
+    --secondaryToolbarButton-selectTool-icon: url(assets/icons/secondaryToolbarButton-selectTool.svg);
+    --secondaryToolbarButton-handTool-icon: url(assets/icons/secondaryToolbarButton-handTool.svg);
+    --secondaryToolbarButton-scrollVertical-icon: url(assets/icons/secondaryToolbarButton-scrollVertical.svg);
+    --secondaryToolbarButton-scrollHorizontal-icon: url(assets/icons/secondaryToolbarButton-scrollHorizontal.svg);
+    --secondaryToolbarButton-scrollWrapped-icon: url(assets/icons/secondaryToolbarButton-scrollWrapped.svg);
+    --secondaryToolbarButton-spreadNone-icon: url(assets/icons/secondaryToolbarButton-spreadNone.svg);
+    --secondaryToolbarButton-spreadOdd-icon: url(assets/icons/secondaryToolbarButton-spreadOdd.svg);
+    --secondaryToolbarButton-spreadEven-icon: url(assets/icons/secondaryToolbarButton-spreadEven.svg);
+    --secondaryToolbarButton-documentProperties-icon: url(assets/icons/secondaryToolbarButton-documentProperties.svg);
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    /* font-size: 62.5%; */
+    font-size: 100%;
+    color: #333;
+    line-height: 1.6rem;
+    font-family: "Roboto", sans-serif;
+    /* font-family: "Roboto"; */
+    box-sizing: border-box;
+}
+
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid_full-width {
+    width: 100%;
+}
+
+.grid__row {
+    display: flex;
+    flex: wrap;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+.modal-backdrop {
+    z-index: 0 !important;
+}
+
+
+/**CSS phone button***/
+@media screen and (max-width: 680px) {
+    .call-now-button {
+        display: flex !important;
+        background: transparent;
+    }
+    call-now-button .call-text {
+        display: none;
+    }
+}
+
+.quick-call-button {
+    display: none;
+}
+
+.call-now-button {
+    display: none;
+    z-index: 9999;
+    clear: both;
+    margin: 0 auto;
+    position: fixed;
+    border-radius: 50px;
+}
+
+.call-now-button div {
+    display: flex;
+}
+
+.call-now-button div p {
+    color: #fff;
+    display: table;
+    padding: 10px;
+    border-radius: 21px;
+    height: 34px;
+    line-height: 14px;
+    font-size: 14px;
+    margin: 8px 5px 8px 50px;
+    text-transform: uppercase;
+    font-weight: normal;
+    text-align: center;
+    box-sizing: content-box;
+    text-decoration: none !important;
+    box-sizing: border-box;
+}
+
+.quick-alo-ph-circle.active {
+    width: 130px;
+    height: 130px;
+    top: -40px;
+    left: -40px;
+    position: absolute;
+    background-color: transparent;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px solid rgba(30, 30, 30, 0.4);
+    opacity: 1;
+    -webkit-animation: quick-alo-circle-anim 1.2s infinite ease-in-out;
+    -moz-animation: quick-alo-circle-anim 1.2s infinite ease-in-out;
+    -ms-animation: quick-alo-circle-anim 1.2s infinite ease-in-out;
+    -o-animation: quick-alo-circle-anim 1.2s infinite ease-in-out;
+    animation: quick-alo-circle-anim 1.2s infinite ease-in-out;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-ph-circle-fill.active {
+    width: 80px;
+    height: 80px;
+    top: -15px;
+    left: -15px;
+    position: absolute;
+    background-color: #000;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: 1;
+    -webkit-animation: quick-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    -moz-animation: quick-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    -ms-animation: quick-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    -o-animation: quick-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    animation: quick-alo-circle-fill-anim 2.3s infinite ease-in-out;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-ph-img-circle.shake {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: 1;
+    background: url(https://rolievn.com/p11rolienew/P5Upload/uploads/images/phone-call.png) no-repeat center center;
+    -webkit-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -moz-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -ms-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -o-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-phone-img-circle.shake {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: 1;
+    -webkit-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -moz-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -ms-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -o-animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-ph-img-circle.notshake {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.quick-alo-phone-img-circle.notshake {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+@media screen and (max-width: 8600px) {
+    .call-now-button {
+        display: flex !important;
+        /* background: #03db39; */
+    }
+    .quick-call-button {
+        display: block !important;
+    }
+}
+
+.call-now-button {
+    bottom: 20px;
+}
+
+.call-now-button {
+    left: 20px;
+}
+
+.call-now-button {
+    /* background: #03db39; */
+}
+
+.call-now-button div a .quick-alo-ph-img-circle,
+.call-now-button div a .quick-alo-phone-img-circle {
+    background-color: #fd0;
+}
+
+.call-now-button .call-text {
+    font-weight: 500;
+    font-family: "oswald";
+    color: black;
+}
+
+@-moz-keyframes quick-alo-circle-anim {
+    0% {
+        -moz-transform: rotate(0) scale(0.5) skew(1deg);
+        opacity: 0.1;
+        -moz-opacity: 0.1;
+        -webkit-opacity: 0.1;
+        -o-opacity: 0.1;
+    }
+    30% {
+        -moz-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.5;
+        -moz-opacity: 0.5;
+        -webkit-opacity: 0.5;
+        -o-opacity: 0.5;
+    }
+    100% {
+        -moz-transform: rotate(0) scale(1) skew(1deg);
+        opacity: 0.6;
+        -moz-opacity: 0.6;
+        -webkit-opacity: 0.6;
+        -o-opacity: 0.1;
+    }
+}
+
+@-webkit-keyframes quick-alo-circle-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(0.5) skew(1deg);
+        -webkit-opacity: 0.1;
+    }
+    30% {
+        -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+        -webkit-opacity: 0.5;
+    }
+    100% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+        -webkit-opacity: 0.1;
+    }
+}
+
+@-o-keyframes quick-alo-circle-anim {
+    0% {
+        -o-transform: rotate(0) kscale(0.5) skew(1deg);
+        -o-opacity: 0.1;
+    }
+    30% {
+        -o-transform: rotate(0) scale(0.7) skew(1deg);
+        -o-opacity: 0.5;
+    }
+    100% {
+        -o-transform: rotate(0) scale(1) skew(1deg);
+        -o-opacity: 0.1;
+    }
+}
+
+@-moz-keyframes quick-alo-circle-fill-anim {
+    0% {
+        -moz-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.2;
+    }
+    50% {
+        -moz-transform: rotate(0) -moz-scale(1) skew(1deg);
+        opacity: 0.2;
+    }
+    100% {
+        -moz-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.2;
+    }
+}
+
+@-webkit-keyframes quick-alo-circle-fill-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.2;
+    }
+    50% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+        opacity: 0.2;
+    }
+    100% {
+        -webkit-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.2;
+    }
+}
+
+@-o-keyframes quick-alo-circle-fill-anim {
+    0% {
+        -o-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.2;
+    }
+    50% {
+        -o-transform: rotate(0) scale(1) skew(1deg);
+        opacity: 0.2;
+    }
+    100% {
+        -o-transform: rotate(0) scale(0.7) skew(1deg);
+        opacity: 0.2;
+    }
+}
+
+@-moz-keyframes quick-alo-circle-img-anim {
+    10% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+    10% {
+        -moz-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    20% {
+        -moz-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    30% {
+        -moz-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    40% {
+        -moz-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    50% {
+        -moz-transform: rotate(0) scale(1) skew(1deg);
+    }
+    100% {
+        -moz-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+
+@-webkit-keyframes quick-alo-circle-img-anim {
+    0% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+    10% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    20% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    30% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    40% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    50% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+    100% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+
+@-o-keyframes quick-alo-circle-img-anim {
+    0% {
+        -o-transform: rotate(0) scale(1) skew(1deg);
+    }
+    10% {
+        -o-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    20% {
+        -o-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    30% {
+        -o-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    40% {
+        -o-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    50% {
+        -o-transform: rotate(0) scale(1) skew(1deg);
+    }
+    100% {
+        -o-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+

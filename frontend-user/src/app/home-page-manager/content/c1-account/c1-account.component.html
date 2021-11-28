@@ -1,0 +1,141 @@
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+  <div class="card h-100">
+    <div class="card-body">
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mb-2 text-primary">Personal Details</h6>
+        </div>
+        <div class="col-md-12">
+          <form [formGroup]="form" class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input formControlName="Name" [(ngModel)]="staffInfoLogin.Fullname" type="text" class="form-control"
+                  id="fullName" placeholder="Enter full name">
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="form.controls['Name'].invalid && (form.controls['Name'].dirty || form.controls['Name'].touched)">
+                <div *ngIf="form.controls['Name'].errors.required">
+                  Vui lòng nhập trường này.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="eMail">Email</label>
+                <input formControlName="Email" readonly [(ngModel)]="staffInfoLogin.Email" type="email"
+                  class="form-control" id="eMail" placeholder="Enter email ID">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input formControlName="Phone" [(ngModel)]="staffInfoLogin.Phone" type="text" class="form-control"
+                  id="phone" placeholder="Enter phone number">
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="form.controls['Phone'].invalid && (form.controls['Phone'].dirty || form.controls['Phone'].touched)">
+                <div *ngIf="form.controls['Phone'].errors.required">
+                  Vui lòng nhập trường này.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="website">Sex</label>
+                <select formControlName="Sex" [(ngModel)]="staffInfoLogin.Sex" class="form-control"
+                  id="exampleFormControlSelect2">
+                  <option *ngFor="let item of sex" [value]="item?.id">{{item?.Name}}</option>
+                </select>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="form.controls['Sex'].invalid && (form.controls['Sex'].dirty || form.controls['Sex'].touched)">
+                <div *ngIf="form.controls['Sex'].errors.required">
+                  Vui lòng nhập trường này.
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mt-3 mb-2 text-primary">Address</h6>
+        </div>
+        <div class="col-md-12">
+          <form [formGroup]="form1" class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="Street">Address</label>
+                <input formControlName="Address" [(ngModel)]="staffInfoLogin.Address" type="name" class="form-control"
+                  id="Address" placeholder="Enter Address">
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="form1.controls['Address'].invalid && (form1.controls['Address'].dirty || form1.controls['Address'].touched)">
+                <div *ngIf="form1.controls['Address'].errors.required">
+                  Vui lòng nhập trường này.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="ciTy">City</label>
+                <select formControlName="City" (change)="getDistrictWithCity(staffInfoLogin.IdCity)"
+                  [(ngModel)]="staffInfoLogin.IdCity" class="form-control" id="exampleFormControlSelect2">
+                  <option *ngFor="let item of CityDatas" [value]="item?.id">{{item?.Name}}</option>
+
+                </select>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="form1.controls['City'].invalid && (form1.controls['City'].dirty || form1.controls['City'].touched)">
+                <div *ngIf="form1.controls['City'].errors.required">
+                  Vui lòng nhập trường này.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label for="sTate">District</label>
+                <select formControlName="District" [(ngModel)]="staffInfoLogin.IdDistrict" class="form-control"
+                  id="exampleFormControlSelect2">
+                  <option *ngFor="let item of DistrictDatas" [value]="item?.id">{{item?.Name}}</option>
+                </select>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="form1.controls['District'].invalid && (form1.controls['District'].dirty || form1.controls['District'].touched)">
+                <div *ngIf="form1.controls['District'].errors.required">
+                  Vui lòng nhập trường này.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <img class="rounded-circle custom-preview-file" *ngIf="staffInfoLogin.Avatar!=''"
+                    [src]="staffInfoLogin.Avatar" alt="izi software" width="100" height="100">
+                </div>
+                <div class="col-md-12 text-center">
+                  <div class="form-group">
+                    <input formControlName="Avatar" type="file" (change)="uploadFile(file.files)" #file
+                      style="display: none" multiple="multiple" accept="image/*" />
+                  </div>
+                  <button class="btn btn-info" (click)="file.click()">
+                    <i class="fas fa-upload"></i> Avatar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="text-right">
+            <button (click)="onBtnUpdateClick()" type="button" id="submit" name="submit" style="background:var(--main-color)"
+              class="btn btn-custom">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
