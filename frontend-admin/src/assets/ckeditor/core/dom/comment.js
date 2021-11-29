@@ -1,29 +1,4 @@
-/**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
 
-/**
- * @fileOverview Defines the {@link CKEDITOR.dom.comment} class, which represents
- *		a DOM comment node.
- */
-
-/**
- * Represents a DOM comment node.
- *
- *		var nativeNode = document.createComment( 'Example' );
- *		var comment = new CKEDITOR.dom.comment( nativeNode );
- *
- *		var comment = new CKEDITOR.dom.comment( 'Example' );
- *
- * @class
- * @extends CKEDITOR.dom.node
- * @constructor Creates a comment class instance.
- * @param {Object/String} comment A native DOM comment node or a string containing
- * the text to use to create a new comment node.
- * @param {CKEDITOR.dom.document} [ownerDocument] The document that will contain
- * the node in case of new node creation. Defaults to the current document.
- */
 CKEDITOR.dom.comment = function( comment, ownerDocument ) {
 	if ( typeof comment == 'string' )
 		comment = ( ownerDocument ? ownerDocument.$ : document ).createComment( comment );
