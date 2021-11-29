@@ -1,34 +1,7 @@
-/**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
 
-/**
- * @fileOverview Defines the {@link CKEDITOR.editor} class, which is the base
- *		for other classes representing DOM objects.
- */
-
-/**
- * Represents a DOM object. This class is not intended to be used directly. It
- * serves as the base class for other classes representing specific DOM
- * objects.
- *
- * @class
- * @mixins CKEDITOR.event
- * @constructor Creates a domObject class instance.
- * @param {Object} nativeDomObject A native DOM object.
- */
 CKEDITOR.dom.domObject = function( nativeDomObject ) {
 	if ( nativeDomObject ) {
-		/**
-		 * The native DOM object represented by this class instance.
-		 *
-		 *		var element = new CKEDITOR.dom.element( 'span' );
-		 *		alert( element.$.nodeType ); // '1'
-		 *
-		 * @readonly
-		 * @property {Object}
-		 */
+
 		this.$ = nativeDomObject;
 	}
 };
@@ -49,18 +22,6 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 
 	return {
 
-		/**
-		 * Gets the private `_` object which is bound to the native
-		 * DOM object using {@link #getCustomData}.
-		 *
-		 *		var elementA = new CKEDITOR.dom.element( nativeElement );
-		 *		elementA.getPrivate().value = 1;
-		 *		...
-		 *		var elementB = new CKEDITOR.dom.element( nativeElement );
-		 *		elementB.getPrivate().value; // 1
-		 *
-		 * @returns {Object} The private object.
-		 */
 		getPrivate: function() {
 			var priv;
 
@@ -179,25 +140,7 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 		}
 	};
 
-	/**
-	 * Sets a data slot value for this object. These values are shared by all
-	 * instances pointing to that same DOM object.
-	 *
-	 * **Note:** The created data slot is only guaranteed to be available on this unique DOM node,
-	 * thus any wish to continue access to it from other element clones (either created by
-	 * clone node or from `innerHtml`) will fail. For such usage please use
-	 * {@link CKEDITOR.dom.element#setAttribute} instead.
-	 *
-	 * **Note**: This method does not work on text nodes prior to Internet Explorer 9.
-	 *
-	 *		var element = new CKEDITOR.dom.element( 'span' );
-	 *		element.setCustomData( 'hasCustomData', true );
-	 *
-	 * @param {String} key A key used to identify the data slot.
-	 * @param {Object} value The value to set to the data slot.
-	 * @returns {CKEDITOR.dom.domObject} This DOM object instance.
-	 * @chainable
-	 */
+
 	domObjectProto.setCustomData = function( key, value ) {
 		var expandoNumber = this.getUniqueId(),
 			dataSlot = customData[ expandoNumber ] || ( customData[ expandoNumber ] = {} );
@@ -207,16 +150,7 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 		return this;
 	};
 
-	/**
-	 * Gets the value set to a data slot in this object.
-	 *
-	 *		var element = new CKEDITOR.dom.element( 'span' );
-	 *		alert( element.getCustomData( 'hasCustomData' ) );		// e.g. 'true'
-	 *		alert( element.getCustomData( 'nonExistingKey' ) );		// null
-	 *
-	 * @param {String} key The key used to identify the data slot.
-	 * @returns {Object} This value set to the data slot.
-	 */
+
 	domObjectProto.getCustomData = function( key ) {
 		var expandoNumber = this.$[ 'data-cke-expando' ],
 			dataSlot = expandoNumber && customData[ expandoNumber ];
@@ -244,11 +178,7 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 		return hadKey ? retval : null;
 	};
 
-	/**
-	 * Removes any data stored in this object.
-	 * To avoid memory leaks we must assure that there are no
-	 * references left after the object is no longer needed.
-	 */
+
 	domObjectProto.clearCustomData = function() {
 		// Clear all event listeners
 		this.removeAllListeners();
@@ -257,14 +187,6 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 		expandoNumber && delete customData[ expandoNumber ];
 	};
 
-	/**
-	 * Gets an ID that can be used to identify this DOM object in
-	 * the running session.
-	 *
-	 * **Note**: This method does not work on text nodes prior to Internet Explorer 9.
-	 *
-	 * @returns {Number} A unique ID.
-	 */
 	domObjectProto.getUniqueId = function() {
 		return this.$[ 'data-cke-expando' ] || ( this.$[ 'data-cke-expando' ] = CKEDITOR.tools.getNextNumber() );
 	};
