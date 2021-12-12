@@ -21,10 +21,10 @@ namespace Sample.Controllers
             client.UseDefaultCredentials = false;
             client.EnableSsl = true;
 
-            client.Credentials = new System.Net.NetworkCredential("luongthanhbinh45@gmail.com", "efvnihlfxrlcjqzr");
+            client.Credentials = new System.Net.NetworkCredential("minhducand@gmail.com", "efvnihlfxrlcjqzr");
 
             var mailMessage = new System.Net.Mail.MailMessage();
-            mailMessage.From = new System.Net.Mail.MailAddress("luongthanhbinh45@gmail.com");
+            mailMessage.From = new System.Net.Mail.MailAddress("minhducand@gmail.com");
 
             mailMessage.To.Add(email.To);
 
