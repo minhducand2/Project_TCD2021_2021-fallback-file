@@ -13,22 +13,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs'; 
 import 'localstorage-polyfill' 
 
-// const domino = require('domino');
-// const fs = require('fs');
-// const path = require('path');
-// const template = fs.readFileSync('dist/angular-starter/browser/index.html').toString();
-// const win = domino.createWindow(template);
-// // const files = fs.readdirSync(`${process.cwd()}/dist-server`);
 
-// global['window'] = win;
-// Object.defineProperty(win.document.body.style, 'transform', {
-//   value: () => {
-//     return {
-//       enumerable: true,
-//       configurable: true
-//     };
-//   },
-// });
 
 // global['document'] = win.document;
 // global['CSS'] = null;
